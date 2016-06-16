@@ -1,0 +1,261 @@
+<?php
+
+namespace app\controllers;
+
+use yii;
+use app\models\Product;
+use yii\web\Controller;
+use app\models\Dictitem;
+use app\models\Message;
+use app\models\Submessage;
+use app\models\Contact;
+use app\common\Common;
+use yii\data\Pagination;
+use app\models\User;
+
+class HomeController extends Controller
+{
+    public $layout = false; //设置使用的布局文件
+    public $menuModels;
+    public $menuId;
+    public $menus;
+    public $enableCsrfValidation = false;
+    /*
+     * @function 跳转到主页
+     */
+    public function actionIndex()
+    {
+        if(Yii::$app->request->isPost){
+
+        }
+        return $this->render('index');
+    }
+    //@function 注册跳转or注册数据
+    public function actionRegister(){
+        if(Yii::$app->request->isPost){
+            $verifyCode = Yii::$app->request->post('verifyCode');
+            if(strtolower(Yii::$app->session['userCode']) == strtolower($verifyCode)){
+                $username = Yii::$app->request->post('username');
+                $password = Yii::$app->request->post('password');
+                $email = Yii::$app->request->post('email');
+                $mobilephone = Yii::$app->request->post('mobilephone');
+                $fontUser = new User();
+                $fontUser->id = Common::generateID();
+                $fontUser->username = $username;
+                $fontUser->password = Common::hashMD5($password);
+                $fontUser->email = $email;
+                $fontUser->mobilephone = $mobilephone;
+                $fontUser->userState = '1';
+                $fontUser->userType = '0';
+                $fontUser->registerTime = date("Y-m-d H:i:s");
+                $fontUser->save();
+                Yii::$app->session->remove('userCode');
+            }else{
+                return 'verifyError';
+            }
+        }else{
+            return $this->render('register');
+        }
+    }
+
+    //@function 跳转到商城
+    public function actionShop(){
+        if(Yii::$app->request->isPost){
+
+        }else{
+            $products = Product::find()->where('productState = 0')->all();
+            $dictItem = Dictitem::find()
+                ->where(['dictCode' => 'DICT_PRODUCTUNIT'])
+                ->all();
+            foreach($products as $key=>$data) {
+                foreach ($dictItem as $index => $value) {
+                    if ($data['productUnit'] == $value->dictItemCode) {
+                        $products[$key]['productUnit'] = $value->dictItemName;
+                    }
+                }
+            }
+            return $this->render('shop',[
+                'products' => $products,
+            ]);
+        }
+    }
+
+    //@function 跳转到专业人才
+    public function actionProfessional(){
+        if(Yii::$app->request->isPost){
+
+        }else{
+            return $this->render('professional');
+        }
+    }
+
+    //@function 跳转到人才招聘
+    public function actionTalentrecruitment(){
+        if(Yii::$app->request->isPost){
+
+        }else{
+            return $this->render('talentrecruitment');
+        }
+    }
+
+    //@function 跳转到关于我们
+    public function actionAboutus(){
+        if(Yii::$app->request->isPost){
+
+        }else{
+            return $this->render('aboutus');
+        }
+    }
+
+    //@function 跳转到联系我们
+    public function actionContact(){
+        if(Yii::$app->request->isPost){
+
+        }else{
+            return $this->render('contact');
+        }
+    }
+
+    /*
+	 * 提交联系我们内容
+	 */
+    public function actionSavecontact(){
+        $contact = new Contact();
+        $contact->id = Common::generateID();//默认方法生成ID
+        $contact->username = Yii::$app->request->post('name');
+        $contact->mobilephone = Yii::$app->request->post('mobilephone');
+        $contact->content = Yii::$app->request->post('content');
+        $contact->createDateTime = date("Y-m-d H:i:s");
+        if($contact->save()){
+            return 'success';
+        }else{
+            return 'fail';
+        };
+    }
+
+    //@function 跳转到媒体声音
+    public function actionMedia(){
+        if(Yii::$app->request->isPost){
+
+        }else{
+            return $this->render('media');
+        }
+    }
+
+    //@function 跳转到留言板
+    public function actionBoard(){
+        if(Yii::$app->request->isPost){
+
+        }else{
+            $messages = Message::find();
+            $submessages = Submessage::find()->all();
+            $pages = new Pagination(['totalCount' => $messages->count(), 'pageSize' => Common::PAGESIZE]);//分页
+            $models = $messages->offset($pages->offset)->limit($pages->limit)->orderBy('createDateTime DESC')->all();
+            return $this->render('board',[
+                'messages' => $models,
+                'submessages' => $submessages,
+                'pages' => $pages,
+            ]);
+        }
+    }
+
+    /*
+	 * 提交帖子
+	 */
+    public function actionSavemessage(){
+        $message = new Message();
+        $message->id = Common::generateID();//默认方法生成ID
+        $message->username = Yii::$app->request->post('name');
+        $message->content = Yii::$app->request->post('content');
+        $message->createDateTime = date("Y-m-d H:i:s");
+        if($message->save()){
+            return 'success';
+        }else{
+            return 'fail';
+        };
+    }
+
+    //@function 跳转到商品详情
+    public function actionTailafter(){
+        if(Yii::$app->request->isPost){
+
+        }else{
+            return $this->render('tailafter');
+        }
+    }
+
+    //@function 跳转到忘记密码
+    public function actionForgetpassword(){
+        if(Yii::$app->request->isPost){
+
+        }else{
+            return $this->render('forgetpassword');
+        }
+    }
+
+    //@function 跳转到声明
+    public function actionStatement(){
+        if(Yii::$app->request->isPost){
+
+        }else{
+            return $this->render('statement');
+        }
+    }
+    //@funciton 检查前台注册用户名是否重复
+    public function actionCheckusername(){
+        $username = Yii::$app->request->post("username");
+        $count = User::find()
+            ->where('username = :username',[':username' => $username])
+            ->count();
+        if($count == 0){
+            return 'success';
+        }else{
+            return 'fail';
+        }
+    }
+
+    //@function 生成验证码
+    /*
+	 * @author liuyao
+	 * @date 2016-4-4
+	 * @function生成验证码
+	 */
+    public function actions()
+    {
+        return  [
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                //'fixedVerifyCode' => YII_ENV ? 'testme' : null,
+                //'backColor'=>0x000000,//背景颜色
+                'maxLength' => 4, //最大显示个数
+                'minLength' => 4,//最少显示个数
+                'padding' => 3,//间距
+                'height'=>42,//高度
+                'width' => 120,  //宽度
+                //'foreColor'=>0xffffff,     //字体颜色
+                'offset'=>3,        //设置字符偏移量 有效果
+            ],
+        ];
+    }
+
+    //@funciton 登录网站
+    public function actionLogin(){
+        $username = Yii::$app->request->post('username');
+        $password = Yii::$app->request->post('password');
+        $query = User::find()
+            ->where('username = :username and password = :password',[':username'=>$username
+            ,":password"=>Common::hashMD5($password)]);
+        $count = $query->count();
+        $user = $query->one();
+        if($count == 0){
+            return "fail";
+        }else{
+            Yii::$app->session['username'] = $username;
+            Yii::$app->session['userId'] = $user->id;
+            Yii::$app->session['truename'] = $user->truename;
+            Yii::$app->session['userType'] = $user->userType;
+            Yii::$app->session['roleId'] = $user->roleId;
+            return 'success';
+        }
+    }
+}

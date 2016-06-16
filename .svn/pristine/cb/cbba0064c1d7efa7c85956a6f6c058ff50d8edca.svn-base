@@ -1,0 +1,89 @@
+*{margin:0;border:0;padding:0;}
+ul{list-style:none;}
+a{text-align:none;}
+a{text-decoration:none;outline:none;}
+a,img{border:0;}
+@font-face{font-family:"微软雅黑";
+    src:url(css/home/Yahei.ttc);}
+/*wrapper*/
+.wrapper{width:auto;height:auto;margin:0 auto;}
+/*header*/
+/*content*/
+.content{width:100%;height:100%;margin:0 auto;margin-top:100px;min-width:1200px;}
+.content_up{width:52.08%;min-width:1000px;height:80px;margin:0 auto;}
+.content_up img.shop_logo{float:left;}
+.content_up img.process{float:right;margin-top:20px;}
+table {border-collapse:collapse;border-spacing: 0;border: 0;text-align: center;width: 1000px;margin:0 auto;margin-top:25px;}
+thead tr{border: 1px solid #bd9fbd;}
+th{background: #f4f4f4;width:125px;height:40px;font-size:14px;color:#996699;text-align:center;}
+th.detail{width:280px;text-align:center;}
+.long_string{border-left:solid 1px #fff;height:20px;width:1px;position:absolute;top:285px;}
+td{padding: 10px;text-align:center;}
+
+tbody tr{border: 1px solid #999999;}
+tbody tr{height:150px;}
+td.goods img{float:left;border:solid 1px #c490bf;}
+td.goods p{margin-top:30px;font-size:14px;color:#cfa0cf;line-height:0.2;}
+td.price{color:#666666;font-weight:700;}
+td.discount{color:#996699;}
+.count{width:200px;height:30px;}
+.reduce,.add{width:23px;height:23px;cursor: pointer;border: 1px solid #959494;
+    background: #fff;
+    text-align: center;
+    line-height: 20px;
+    color: #959494;
+	font-size:18px;
+	 -moz-user-select:none;/*火狐*/
+  -webkit-user-select:none;/*webkit浏览器*/
+  -ms-user-select:none;/*IE10*/
+  -khtml-user-select:none;/*早期浏览器*/
+  user-select:none;
+  
+}
+.add:hover,.reduce:hover {
+    color: #f50;
+    border-color: #f60;
+    cursor: pointer;
+}
+.count-input{   width: 40px;
+    height: 22px;
+    line-height: 20px;
+    border: 1px solid #959494;
+    color: #959494;
+    text-align: center;
+    
+	margin:0 5px;
+    background-color: #fff;
+}
+.subtotal{color:#ff0033;}
+.delete{cursor: pointer;}
+.delete a:hover{background:url(../images/images_shopping_car/delete_after.png);}
+.foot {
+    width:52.08%;min-width:1000px;margin:0 auto;
+    margin-top: 50px;
+    height: 51px;
+    border: 1px solid #c490bf;
+    background-color: #e6e0e0;text-align:center;line-height:51px;
+}
+.foot label{margin-left:40px;float:left;font-size:16px;}
+.foot label span{padding-left:10px;font-size:16px;color:#996699;}
+.foot div, .foot a {line-height: 51px;height: 51px;}
+.foot a{margin-left:20px;color:#996699;font-size:16px;float:left;cursor: pointer;}
+.foot a:hover{color:red;}
+.frselected{margin-left:420px;float:left;color:#996699;font-size:16px;}
+.frselected span{padding-left:20px;padding-right:20px;color:#ff3300;font-weight:700;font-size:18px;}
+.frtotal{color:#996699;font-size:18px;font-weight:700;}
+.frtotal span{padding-left:35px;color:#ff3300;padding-right:35px;font-size:16px;}
+.accounts{ width:52.08%;min-width:1000px;height:202px;margin:0 auto;margin-top:50px;}
+img.shopping{float:right;margin-right:40px;}
+img.shopping:hover{background:url(../images/images_shopping_car/shopping_after.png);}
+.button{width:111px;height:42px;background:#ff33ff;float:right;cursor: pointer;}
+.button a{color:#fff;line-height:42px;padding-left:40px;font-size:14px;}
+.right{position:fixed;width:60px;height:200px;right:55px;top:60%;z-index:100;}
+.right ul li{width:50px;height:50px;float:left;position:relative;margin-top:5px;list-style-type:none;}
+.right ul li .sidebox1{background:url(../images/images_recruitment/icon_TO_top_after.png);position:absolute;width:50px;height:50px;top:0;right:0;transition:all 0.3s;overflow:hidden;}
+.right ul li .sidebox2{background:url(../images/images_recruitment/icon_shop_after.png);position:absolute;width:50px;height:50px;top:0;right:0;transition:all 0.3s;overflow:hidden;}
+.right ul li .sidebox3{background:url(../images/images_recruitment/icon_share_after.png);position:absolute;width:50px;height:50px;top:0;right:0;transition:all 0.3s;overflow:hidden;}
+.right ul li .sidebox1:hover{background:url(../images/images_recruitment/icon_TO_top.png)}
+.right ul li .sidebox2:hover{background:url(../images/images_recruitment/icon_shop.png)}
+.right ul li .sidebox3:hover{background:url(../images/images_recruitment/icon_share.png)}

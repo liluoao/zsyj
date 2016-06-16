@@ -1,0 +1,32 @@
+//用户名
+
+		 
+	
+//密码
+
+
+
+
+
+
+
+
+
+
+
+
+//同意注册
+$(document).ready(function(){
+	  $("#register").click(function(){
+		 if($(".read").attr("checked")=="checked"){
+			 $("a").attr({"href":"#"})//链接
+			 }
+		  else{ alert("不同意协议不能注册");}
+		  if($("#verification").val()==""){
+			 alter("验证码不能为空"); }
+		  })
+		})
+		 $("#register").click(function(){
+			 if($("#verification").val()==""){
+			 alter("验证码不能为空"); }
+			 })

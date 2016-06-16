@@ -1,0 +1,23 @@
+function save(){
+        var paraStr = "";
+        paraStr +="id="+$("#id").val();
+        paraStr +="&mobilephone="+$("#mobilephone").val();
+        paraStr +="&email="+$("#email").val();
+        paraStr +="&sex="+$("input[name='sex']:checked").val();
+        paraStr +="&postcode="+$("#postcode").val();
+        $.ajax({
+            url: updateUrl,
+            type: "post",
+            dataType: "text",
+            data:paraStr ,
+            async: "false",
+            success: function (data) {
+                alertTip('修改成功！',true);
+                window.parent.location.href= personaldataUrl;
+            },
+            error:function(data){
+                alertTip('修改失败！',true);
+            }
+        });
+
+    }

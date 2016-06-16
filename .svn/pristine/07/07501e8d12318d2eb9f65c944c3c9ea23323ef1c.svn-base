@@ -1,0 +1,56 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "{{%ordercharge}}".
+ *
+ * @property string $id
+ * @property string $userId
+ * @property string $areaAddress
+ */
+class Ordercharge extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%ordercharge}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['id'], 'required'],
+            [['id', 'userId'], 'string', 'max' => 32],
+            [['areaAddress'], 'string', 'max' => 16]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => '区域负责人表id',
+            'userId' => '用户id',
+            'areaAddress' => '区域代码，从数据字典中读取',
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     * @return \app\models\activeQuery\OrderchargeQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \app\models\activeQuery\OrderchargeQuery(get_called_class());
+    }
+}

@@ -1,0 +1,53 @@
+
+.register{width:1000px;height:625px;margin:0 auto;margin-top:80px;}
+.purple{background:url(../../images/home/images_purple/purple.png);width:450px;height:520px;margin-top:5px;float:left;}
+.purple_right{float:right;margin-left:2px;width:480px;height:525px; border:#999 1px solid;box-shadow:1px 10px 10px #999;-moz-border-radius: 10px; /* Gecko browsers */-webkit-border-radius: 10px;   /* Webkit browsers */border-radius:10px;   /* W3C syntax */}
+.user{width:370px;height:30px;margin-top:50px;}
+.user_left{width:125px;height:30px; float:left;}
+.xin{float:left;margin-left:30px;margin-top:5px;color:#F00;}	
+.xin1{float:left;margin-top:-25px; margin-left:30px;color:#F00;}	   
+.username{float:right;margin-right:-8px; font-size:14px;letter-spacing:14px;font-family:"微软雅黑";line-height:30px;}
+.set{float:right;font-size:14px;letter-spacing:5px;font-family:"微软雅黑";line-height:30px;}
+.star{float:right;margin-right:10px;width:12px;height:8px; margin-top:11px;}
+.user_right{border:#ccc 1px solid;float:right;width:220px;height:30px;font-family:"微软雅黑";font-size:12px;background:#FFF;}
+input.user_right:focus{outline:solid 1px #3CF;}
+input.verification:focus{outline:solid 1px #3CF;}
+.icon_UserName{width:16px;height:17px;float:right;position:relative;left:215px;top:6px;}
+.xinhao{float:left;margin-left:30px;margin-top:5px;color:#F00;}
+.password{width:370px;height:30px; margin-top:20px;}
+.icon_Code{width:16px;height:21px;float:right;position:relative;left:215px;top:5px;}
+.email{width:20px;weight:14px;float:right;position:relative;left:215px;top:8px;}
+.icon_phone{width:14px;height:23px;float:right;position:relative;left:215px;top:4px;}
+.verification_1{width:480px;height:30px;margin-top:20px;}
+.verification{width:80px;height:25px;float:left;margin-left:22px;background:#FFF;}
+.verify{width:80px;height:30px;float:left;margin-left:10px;}
+.ver{font-family:"微软雅黑";font-size:14px;float:left; margin-left:10px; margin-top:0px;line-height:30px;}
+.ver a{color:#49a1d0;}
+.agreement{width:300px;height:20px;float:right;margin-top:20px;margin-right:60px;}
+.agreement input{float:left;}
+.agreement span{font-family:"微软雅黑";font-size:12px;letter-spacing:5px;margin-left:5px;}
+.agreement span a{color:#49a1d0;}
+.zhanghao{float:left;margin-top:10px;font-family:"微软雅黑"; font-size:12px; letter-spacing:5px;}
+.zhanghao a{color:#49a1d0;float:right;margin-top:-22px;}
+.reg{font-family:"微软雅黑";font-size:12px;width:245px;height:35px;border-radius:8px;background:#f145b7;color:#FFF;font-weight:600;border:none;outline:medium;float:left;margin-left:150px;margin-top:50px;}
+.reg:hover{background:#cc33ff;}
+
+.yonghu{float:left;margin-left:150px;margin-top:-370px;font-size:10px;color:#F6C;}
+
+
+.mima{float:left;margin-left:150px;margin-top:-320px;font-size:10px;color:#F6C;}
+.hint{float:left;margin-left:150px;margin-top:-270px;font-size:10px;color:#F6C;}
+.user_verification{float:left;margin-left:150px;margin-top:-120px;font-size:10px;color:#F6C;}
+.all{display:none;width:100%;min-width:900px;height:100%;background:rgba(0, 0, 0, 0.3);position:absolute;top:0px;z-index:998;position:fixed;}
+.window{border:#ccc 2px solid;background:#FFF;width:390px;height:200px;position:absolute;top:200px;left:500px;z-index:600;}
+.window_top{width:390px;height:35px;background:#f7c1ff;border-bottom:#CCC 2px solid;}
+.xinxi{line-height:35px;margin-left:20px;color:#666666;font-size:16px;font-family:"微软雅黑";}
+#head{width:13px;height:13px;float:right;margin-top:10px;margin-right:15px;}
+.kong{width:300px;height:160px;}
+.sigh_ok{width:49px;height:45px;float:left;margin-left:30px;margin-top:20px;}
+.kong span{float:left;margin-top:30px;margin-left:15px;color:#666666;font-size:16px;font-family:"微软雅黑";}
+.sure{width:70px;height:30px;float:left;margin-left:215px;margin-top:30px;border:2px solid #ccc;color:#666666;background:#f7c1ff;line-height:30px;text-align:center;}
+.sure:hover{background:#fbe0ff;}
+.cancel{width:70px;height:30px;float:right;margin-right:-75px;margin-top:30px;border:2px solid #ccc;color:#666666;background:#f7c1ff;line-height:30px;text-align:center;}
+.cancel:hover{background:#fbe0ff;}
+

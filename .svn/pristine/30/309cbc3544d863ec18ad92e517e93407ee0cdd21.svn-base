@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>我的消息</title>
+<script src="../../js/jquery-1.11.3.min.js"></script>
+<script src="../../js/curvycorners.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/base_login.css">
+<link rel="stylesheet" type="text/css" href="../../css/aside_base.css" />
+<link rel="stylesheet" href="../../css/share_popup.css" />
+<link rel="stylesheet" href="../../css/slide_share.css" />
+<script src="../../js/share.js"></script>
+<style>
+*{margin:0;padding:0;border:0;}
+
+.down{margin:19px auto;width:1000px;height:auto;}
+.right{width:807px;height:447px;background-color:#FFF;float:left;margin-left:20px;margin-top:25px;}
+p.title{display:block;font-family:"微软雅黑";font-size:16px;color:#060606;width:756px;height:45px;padding-left:51px;margin-top:26px;border-bottom:1px solid #e3dbdb;}
+.message{width:805px;height:150px; }
+.message span{display:block;width:690px;height:30px;border-bottom:1px solid #e3dbdb;color:#060606;padding-left:20px;line-height:30px;background-color:#f7f7f7;}
+.message p{background-color:#f7f7f7;}
+.message img{float:right;margin-right:60px;margin-top:-100px;}
+.message a{display:block;margin-left:50px;margin-top:20px;}
+p.time{border:none;width:131px;height:22px;background-color:#e7e7e7;font-family:"微软雅黑";font-size:12px;color:#666;line-height:22px;text-align:center;margin:14px auto;padding:0;border-radius:6px;}
+p.txt{border:1px solid #e3dbdb;width:710px;height:100px;font-family:"微软雅黑";font-size:14px;color:#666;margin:14px auto;}
+</style>
+</head>
+
+<body>
+<div class="wraper">
+		 <div id="header">
+            <div class="header_nav">
+            	<div class="logo">
+            		<a href="../index.html"><img src="../../images/images_Home/nav_logo.png" />
+            	</div>
+            	<div class="nav">    
+                	<ul>
+                    	<li><a href="../index.html">首页</a></li>						                     
+						<li><a href="../zsyj_shop.html" class="on">紫薯商城</a></li>
+						<li><a href="../professional.html">技术专业</a></li>
+                    	<li><a href="../talent_recruitment.html">人才招聘</a></li>
+                    	<li class="gywm"><a href="../aboutus.html" >关于我们</a>
+                        	<div class="xialala" style="position:absolute;">
+                        		<div class="xiala" >
+                                    <a href="../contact.html">联系我们</a>                                 
+                                    <a href="../media.html">媒体声音</a>
+                                    <a href="../board.html">留言板</a>
+                                    <a href="../aboutus.html">我们是谁</a>
+                            	</div>	
+                        	</div>    
+                        </li>     
+                	</ul>
+            	</div>
+            	<div class="header_login">
+					<a href="personal_data.html" class="people_login">xiji777</a><span>|</span><a href="personal_data.html" class="people_login">我的紫薯</a><span>|</span><a href="../index.html" class="people_login">退出</a>
+					<a href="shopping_cart.html"><div class="company_login" ></div></a>
+				</div>
+            </div>
+        </div>
+	<div class="content">
+    	<div class="content_top">
+    		<div class="content_nav"><a href="personal_data.html">我的紫薯</a><span>></span><a href="order_after.html">我的留言</a></div>
+        	<div class="content_right"><img src="../../images/images_order_detail/13_1_LOGO.png" /></div>
+            <div class="content_line"></div>
+        </div>
+        <div class="big">
+            <div class="aside">
+                <div class="aside_title">我的紫薯</div>
+                <ul>
+                    <li><a href="personal_data.html">个人资料</a></li>
+                    <li><a href="password.html">账户安全</a></li>
+                    <li><a href="address_after.html">收货地址</a></li>
+                    <li><a href="my_messages.html" class="now">我的消息</a></li>
+                    <li><a href="order_after.html">我的订单</a></li>
+                    <li><a href="my_news.html">我的留言</a></li>
+                </ul>
+            </div>
+        <div class="right">
+        	<p class="title">我的消息</p>
+            <div class="message" id="one">
+            	<p class="time">2016-03-14 15:21:27</p>
+                <p class="txt"><span>系统消息</span><a>您的账号于2016年03月14日 15:20:39修改登录，如非本人操作，请尽快修改登录密码</a></p>
+                <img class="one" src="../../images/images_13_1_7/delete.png" />
+            </div>
+            
+            <div class="message" id="two">
+            	<p class="time">2016-03-15 03:23:27</p>
+                <p class="txt"><span>系统消息</span><a>您的账号于2016年03月15日 03:23:27修改登录，如非本人操作，请尽快修改登录密码</a></p>
+                <img class="two" src="../../images/images_13_1_7/delete.png" />
+            </div>
+        </div>
+        </div>
+    </div>
+    <div id="footer">
+			<div class="footer_logo"  style="position:relative;">
+				<img src="../../images/images_Home/icon_footer_left.png" style="position:absolute; left:12.25%;;top:590px;z-index:999;">
+			</div>
+			<div class="footer_logo"  style="position:relative;">
+				<img src="../../images/images_Home/icon_footer_right.png" style="position:absolute; right:5.5%;;top:590px;z-index:999;">
+			</div>	
+
+			<div class="footer_bg">
+				<div class="footer_bg_img">
+					<img src="../../images/images_Home/footer_BG0.jpg">
+				</div>
+			</div>
+			<div class="footer_content_big" style="position:relative;width:1200px;margin:0 auto;">	
+				<div class="footer_content" style="position:absolute;left:19%;top:-450px;margin:0 auto;"><!--top根据页面情况修改-->
+					<a href="../index.html"><img src="../../images/images_Home/footer_logo.png" class="footer_content_logo"></a>
+					<ul>
+						<li class="about">关于我们</li>
+						<li class="who"><a href="../aboutus.html">我们是谁</a></li>
+						<li class="who"><a href="../media.html">媒体声音</a></li>
+						<li class="who"><a href="../contact.html">联系我们</a></li>
+						<li class="who"><a href="../talent_recruitment.html">加入我们</a></li>
+					</ul>
+					<ul>
+						<li class="about">商务合作</li>
+						<li class="who"><a href="../contact.html">商家合作</a></li>
+					
+					</ul>
+					<ul>
+						<li class="about">服务与声明</li>
+						<li class="who"><a href="../statement.html">声明</a></li>
+					</ul>
+					<div class="footer_content_line">
+					</div>
+					<p>关注我们</p>
+					<div class="sina">
+						
+					</div>
+					<div class="weixin">
+						
+						<img src="../../images/images_Home/weixinerweima.jpg" style="width:120px;height:120px;position:absolute;top:-160px;left:-40px;z-index:9999;display:none" class="weixinerweima">
+					</div>
+					
+					<div class="footer_content_text">CopyRight ©2015-2016  武汉凯丽金生物科技有限公司  All Rights Reserve</div>
+					<!--cnzz-->
+					<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000084529'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000084529%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>				
+				</div>
+			</div>
+		</div>
+		
+  
+</div>
+<!--微信悬浮-->
+    <script>
+		$(function(){
+    		$(".weixin").hover(function(){
+        		$(".weixinerweima").show();
+			},function(){
+    		$(".weixinerweima").hide();						})
+					})
+	
+	</script>   
+<script>
+$(document).ready(function(){
+	$(".one").click(function(){
+		$("#one").hide(1000);
+	});
+	$(".two").click(function(){
+		$("#two").hide(1000);
+	});
+})
+</script>
+
+<script type="text/JavaScript">
+addEvent(window, 'load', initCorners);
+function initCorners() {
+var setting = {
+tl: { radius: 6 },
+tr: { radius: 6 },
+bl: { radius: 6 },
+br: { radius: 6 },
+antiAlias: true
+}
+curvyCorners(setting, ".time");
+}
+</script>
+<!--下拉-->
+	<script>
+		$(function(){
+			$('.gywm').hover(function(){
+				$('.xiala').css('display','block');	
+			},function(){
+				$('.xiala').css('display','none');
+			})
+			
+		})
+	</script> 
+    
+ <!--分享-->
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"slide":{"type":"slide","bdImg":"4","bdPos":"3","bdTop":"200"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<div data-bd-bind="" class="bdshare-slide-button-box" style="top:100px;width:0px; right:0px;">
+ 	<a style="left:-40px;" onclick="return false;" class="bdshare-slide-button"></a>
+    <div style="width:0px;display:none;" class="bdshare-slide-list-box"><div class="bdshare-slide-top">分享到</div>
+    <div class="bdshare-slide-list">
+    	<ul style="width: 226px;" class="bdshare-slide-list-ul">
+        <li><a href="#" onclick="return false;" class="slide-mshare" data-cmd="mshare">一键分享</a></li>
+        <li><a href="#" onclick="return false;" class="slide-qzone" data-cmd="qzone">QQ空间</a></li>
+        <li><a href="#" onclick="return false;" class="slide-tsina" data-cmd="tsina">新浪微博</a></li>
+        <li><a href="#" onclick="return false;" class="slide-bdysc" data-cmd="bdysc">百度云收藏</a></li>
+        <li><a href="#" onclick="return false;" class="slide-weixin" data-cmd="weixin">微信</a></li>
+        <li><a href="#" onclick="return false;" class="slide-renren" data-cmd="renren">人人网</a></li>
+        <li><a href="#" onclick="return false;" class="slide-tqq" data-cmd="tqq">腾讯微博</a></li>
+        <li><a href="#" onclick="return false;" class="slide-bdxc" data-cmd="bdxc">百度相册</a></li>
+        <li><a href="#" onclick="return false;" class="slide-kaixin001" data-cmd="kaixin001">开心网</a></li>
+        <li><a href="#" onclick="return false;" class="slide-tqf" data-cmd="tqf">腾讯朋友</a></li>
+        <li><a href="#" onclick="return false;" class="slide-tieba" data-cmd="tieba">百度贴吧</a></li>
+        <li><a href="#" onclick="return false;" class="slide-douban" data-cmd="douban">豆瓣网</a></li>
+        <li><a href="#" onclick="return false;" class="slide-bdhome" data-cmd="bdhome">百度新首页</a></li>
+        <li><a href="#" onclick="return false;" class="slide-sqq" data-cmd="sqq">QQ好友</a></li>
+        <li><a href="#" onclick="return false;" class="slide-thx" data-cmd="thx">和讯微博</a></li>
+        <li><a href="#" onclick="return false;" class="slide-ibaidu" data-cmd="ibaidu">百度中心</a></li>
+		</ul>
+    </div>
+    <div style="width: 226px;" class="bdshare-slide-bottom">
+    	<a href="#" onclick="return false;" class="slide-more" data-cmd="more">更多...</a>
+    </div>
+	</div>
+</div>
+<iframe class="bdshare_dialog_bg" style="top: 140.5px; left: 524.5px; display: none;" frameborder="0"></iframe>
+<div class="bdshare_dialog_box" style="top: 140.5px; left: 524.5px; display: none;">
+	<div class="bdshare_dialog_top">
+    	<a class="bdshare_dialog_close" href="#" onclick="return false;" title="关闭"></a>分享到</div>						
+        <ul class="bdshare_dialog_list">
+        <li><a href="#" onclick="return false;" class="popup_mshare" data-cmd="mshare">一键分享</a></li>
+        <li><a href="#" onclick="return false;" class="popup_qzone" data-cmd="qzone">QQ空间</a></li>
+        <li><a href="#" onclick="return false;" class="popup_tsina" data-cmd="tsina">新浪微博</a></li>
+        <li><a href="#" onclick="return false;" class="popup_bdysc" data-cmd="bdysc">百度云收藏</a></li>
+        <li><a href="#" onclick="return false;" class="popup_weixin" data-cmd="weixin">微信</a></li>
+        <li><a href="#" onclick="return false;" class="popup_renren" data-cmd="renren">人人网</a></li>
+        <li><a href="#" onclick="return false;" class="popup_tqq" data-cmd="tqq">腾讯微博</a></li>
+        <li><a href="#" onclick="return false;" class="popup_bdxc" data-cmd="bdxc">百度相册</a></li>
+        <li><a href="#" onclick="return false;" class="popup_kaixin001" data-cmd="kaixin001">开心网</a></li>
+        <li><a href="#" onclick="return false;" class="popup_tqf" data-cmd="tqf">腾讯朋友</a></li>
+        <li><a href="#" onclick="return false;" class="popup_tieba" data-cmd="tieba">百度贴吧</a></li>
+        <li><a href="#" onclick="return false;" class="popup_douban" data-cmd="douban">豆瓣网</a></li>
+        <li><a href="#" onclick="return false;" class="popup_bdhome" data-cmd="bdhome">百度新首页</a></li>
+        <li><a href="#" onclick="return false;" class="popup_sqq" data-cmd="sqq">QQ好友</a></li>
+        <li><a href="#" onclick="return false;" class="popup_thx" data-cmd="thx">和讯微博</a></li>
+        <li><a href="#" onclick="return false;" class="popup_ibaidu" data-cmd="ibaidu">百度中心</a></li>
+        <li><a href="#" onclick="return false;" class="popup_meilishuo" data-cmd="meilishuo">美丽说</a></li>
+        <li><a href="#" onclick="return false;" class="popup_mogujie" data-cmd="mogujie">蘑菇街</a></li>
+        <li><a href="#" onclick="return false;" class="popup_diandian" data-cmd="diandian">点点网</a></li>
+        <li><a href="#" onclick="return false;" class="popup_huaban" data-cmd="huaban">花瓣</a></li>
+        <li><a href="#" onclick="return false;" class="popup_duitang" data-cmd="duitang">堆糖</a></li>
+        <li><a href="#" onclick="return false;" class="popup_hx" data-cmd="hx">和讯</a></li>
+        <li><a href="#" onclick="return false;" class="popup_fx" data-cmd="fx">飞信</a></li>
+        <li><a href="#" onclick="return false;" class="popup_youdao" data-cmd="youdao">有道云笔记</a></li>
+        <li><a href="#" onclick="return false;" class="popup_sdo" data-cmd="sdo">麦库记事</a></li>
+        <li><a href="#" onclick="return false;" class="popup_qingbiji" data-cmd="qingbiji">轻笔记</a></li>
+        <li><a href="#" onclick="return false;" class="popup_people" data-cmd="people">人民微博</a></li>
+        <li><a href="#" onclick="return false;" class="popup_xinhua" data-cmd="xinhua">新华微博</a></li>
+        <li><a href="#" onclick="return false;" class="popup_mail" data-cmd="mail">邮件分享</a></li>
+        <li><a href="#" onclick="return false;" class="popup_isohu" data-cmd="isohu">我的搜狐</a></li>
+        <li><a href="#" onclick="return false;" class="popup_yaolan" data-cmd="yaolan">摇篮空间</a></li>
+        <li><a href="#" onclick="return false;" class="popup_wealink" data-cmd="wealink">若邻网</a></li>
+        <li><a href="#" onclick="return false;" class="popup_ty" data-cmd="ty">天涯社区</a></li>
+        <li><a href="#" onclick="return false;" class="popup_iguba" data-cmd="iguba">股吧</a></li>
+        <li><a href="#" onclick="return false;" class="popup_fbook" data-cmd="fbook">Facebook</a></li>
+        <li><a href="#" onclick="return false;" class="popup_twi" data-cmd="twi">Twitter</a></li>
+        <li><a href="#" onclick="return false;" class="popup_linkedin" data-cmd="linkedin">linkedin</a></li>
+        <li><a href="#" onclick="return false;" class="popup_h163" data-cmd="h163">网易热</a></li>
+        <li><a href="#" onclick="return false;" class="popup_evernotecn" data-cmd="evernotecn">印象笔记</a></li>
+        <li><a href="#" onclick="return false;" class="popup_copy" data-cmd="copy">复制网址</a></li>
+        <li><a href="#" onclick="return false;" class="popup_print" data-cmd="print">打印</a></li>
+        </ul>
+        <div class="bdshare_dialog_bottom"><a href="http://share.baidu.com/" target="_blank;">百度分享</a></div>
+</div>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+
+$(document).ready(function(){
+	$("#register").click(function(){
+		if($(".read").attr("checked")=="checked"){
+			$("a").attr({"href":"#"});//链接
+		}else{
+		 alert("不同意协议不能注册");
+		}
+		if($("#verification").val()==""){
+		 alert("验证码不能为空");
+		}
+	})
+	$("#register").click(function(){
+		if($("#verification").val()=="")
+		{
+			alert("验证码不能为空");
+		}
+	})
+	$("#btn_1").click(function(){
+		$("#full_1").show();
+	});
+	$("#close_1").click(function(){
+		$("#full_1").hide();
+	});
+	$("#verification").blur(function(){
+		var verification = $(this).val();
+		if(verification ==　""){
+			$(".user_verification").css("display","block");
+			return;
+		}
+		else{
+			$(".user_verification").css("display","none");
+		}
+	})
+	//弹窗
+	$("#register").click(function(){
+		if($(".read").prop("checked")==true){
+			$("a").prop({"href":"#"})//链接
+		}
+		else{
+			$(".all").show();
+		}
+		$("#head").click(function(){
+			$(".all").hide();
+		});
+		$(".sure").click(function(){
+			$(".all").hide();
+		});
+		$(".cancel").click(function(){
+			$(".all").hide();
+		});
+	})
+	//注册
+	$("#register").click(function(){
+		var biaodan = $("#username").val();
+		var biaodan1 = $("#Password").val();
+		var biaodan2 = $("#verification").val();
+		if(biaodan == ""){
+			$(".yonghu").css("display","block");
+		}
+		if(biaodan1 == ""){
+			$(".mima").css("display","block");
+		}
+		if(biaodan2 == ""){
+			$(".user_verification").css("display","block")
+		}
+	});
+	$("#Password2").blur(function(){
+		if ( $(this).val() != $("#Password").val() ){
+			$(".hint").css("display","block");
+			return ;
+		}
+		else{
+			$(".hint").css("display","none");
+		}
+	})
+	$("#Password").blur(function(){
+		var password = $(this).val();
+		if(password ==　""){
+			$(".mima").css("display","block");
+			return;
+		}
+		else{
+			$(".mima").css("display","none");
+		}
+		if(!/^[0-9a-zA-Z_]{6,20}$/.test(password)){
+			$(".false").css("display","block");
+			return;
+		}
+		else{
+			$(".false").css("display","none");
+		}
+	})
+	$("#username").blur(function(){
+		var username = $(this).val();
+		if(username ==　""){
+			$(".yonghu").css("display","block");
+			return;
+		}
+		else{
+			$(".yonghu").css("display","none");
+		}
+		var url = "#";//后台链接
+		$.post(url,{name:username},function(result){
+			if(result =='1'){
+				alert("用户名存在!");
+			}
+			if(!/^[A-Za-z0-9_\u4e00-\u9fa5]{5,16}$/.test(username)) {   //如果没有匹配到，那么就错误
+				$(".yong").css("display","block");
+				return;
+			}
+			else{
+				$(".yong").css("display","none");
+			}
+		})
+	})
+})
+
+

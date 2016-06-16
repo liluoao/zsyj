@@ -1,0 +1,24 @@
+/**
+ * Created by liluoao on 2016/4/7.
+ */
+function save(){
+        var paraStr = "";
+        paraStr +="id="+$("#id").val();
+        paraStr +="&mobilephone="+$("#mobilephone").val();
+        paraStr +="&email="+$("#email").val();
+        paraStr +="&sex="+$("input[name='sex']:checked").val();
+        $.ajax({
+            url: updateUrl,
+            type: "post",
+            dataType: "text",
+            data:paraStr ,
+            async: "false",
+            success: function (data) {
+                alert('修改成功！');
+            },
+            error:function(data){
+                alert('修改失败！');
+            }
+        });
+
+    }

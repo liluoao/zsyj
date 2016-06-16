@@ -1,0 +1,182 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: liluoao
+ * Date: 2016/4/3
+ * Time: 12:10
+ */
+use yii\helpers\Html;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\Breadcrumbs;
+?>
+
+<?php $this->beginPage() ?>
+<!DOCTYPE html>
+<html lang="<?= Yii::$app->language ?>" xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>购物车</title>
+	<link rel="stylesheet" href="css/home/shopping_cart.css" />
+	<link rel="stylesheet" type="text/css" href="css/home/base_login.css">
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script>
+		function GetCount() {//已选商品数量
+				var aa = 0,counts=0;
+				$(".check-one-check" ).each(
+					function (index,element) {
+						if ($(this).attr("checked")) {
+							aa++;
+							counts += parseFloat($(".subtotal").eq(index).text());//总价格计算
+							return;
+						}
+					}
+				);
+				$("#selectedTotal").text(aa);
+				$("#priceTotal").text(counts.toFixed(2));
+			}
+		$(function(){//点击复选框
+				$(".check-all-check").click(function(){//全选全不选
+					if($(this).attr("checked")=="checked"){
+						$(".check-one-check").attr("checked","true");
+						$(".check-all-check").attr("checked","true");
+
+					}else{
+						$(".check-one-check").removeAttr("checked");
+						$(".check-all-check").removeAttr("checked");
+
+					 }
+					 GetCount();
+				})
+
+
+					$(".check-one-check").click(function(){
+						if($("input[type='checkbox'].check-one-check").length>$("input[type='checkbox'].check-one-check:checked").length)
+						{
+							$(".check-all-check").removeAttr("checked");//不是全选，全选框去掉
+							}
+
+						else{
+							$(".check-all-check").attr("checked","true");
+						}
+						GetCount();
+					})
+			})
+			$(function(){//数量加减
+				var index;
+				$(".add").click(function(){//加
+					index = $(".add").index(this);
+					$(".count-input").eq(index).val(parseInt($(".count-input").eq(index).val()) + 1);
+					var totalPrice = parseInt($(".count-input").eq(index).val())*parseFloat($(".price").eq(index).text());//小计计算价格
+					$(".subtotal").eq(index).text(totalPrice.toFixed(2));
+
+					GetCount();
+				})
+				$(".reduce").click(function(){ //减
+					index = $(".reduce").index(this);
+					if($(".count-input").eq(index).val()<=1){
+							$(".count-input").eq(index).val(2);
+						}
+					$(".count-input").eq(index).val(parseInt($(".count-input").eq(index).val()) - 1);
+					var totalPrice = parseInt($(".count-input").eq(index).val())*parseFloat($(".price").eq(index).text());//小计计算价格
+					$(".subtotal").eq(index).text(totalPrice.toFixed(2));
+					GetCount();
+				})
+			})
+			$(function(){//删除行
+				$(".delete").click(function(){
+					var conf = confirm('确定删除此商品吗？');
+					if (conf) {
+							$(this).parent().remove();
+						}
+				})
+			})
+			$(function(){//删除勾选的
+				$("#deleteAll").click(function(){
+					var confs = confirm('确定删除勾选商品吗？');
+					$("input[type='checkbox']:checked").each(function() { // 遍历选中的checkbox
+						n = $(this).parents("tr").index();  // 获取checkbox所在行的顺序
+						if(confs){
+						$("table #row").find("tr:eq("+n+")").remove();}
+					});
+				})
+			})
+	</script>
+	<!--下拉-->
+	<script>
+		$(function(){
+			$('.gywm').hover(function(){
+				$('.xiala').css('display','block');	
+			},function(){
+				$('.xiala').css('display','none');
+			})
+			
+		})
+	</script>
+</head>
+
+<body>
+<div class="wrapper"><!--header-->
+	<?=$this->render('headerlogin',['column'=>'aboutus'])?>
+	<!--header-->
+	<div class="content">
+    	<div class="content_up">
+    		<img src="images/home/images_shopping_car/shop_LOGO.png" class="shop_logo" />
+            <img src="images/home/images_shopping_car/process_1_2.png" class="process" />
+           
+        </div>
+        <table>
+        	<thead>
+            	<tr>
+                	<th><label><input class="check-all-check"  type="checkbox"/>&nbsp;全选</label></th>
+                    <th class="detail"><div class="long_string"></div>购买商品</th>
+                    <th><div class="long_string"></div>单价（元）</th>
+                    <th><div class="long_string"></div>折扣</th>
+                    <th><div class="long_string"></div>数量</th>
+                    <th><div class="long_string"></div>金额（元）</th>
+                    <th><div class="long_string"></div>操作</th>
+                </tr>
+            </thead>
+            <tbody id="row">
+            	<tr>
+                	<td class="checkbox"><input class="check-one-check" name="check" type="checkbox"/></td>
+                    <td class="goods"><img src="images/home/images_shopping_car/product_2.png" /><p>紫薯原浆</p><p>规格:&nbsp;1 盒</p><p>包装：真空包装</p></td>
+                    <td class="price">29.90</td>
+                    <td class="discount">--</td>
+                    <td class="count"><input class="reduce" type="button" value="-"/><input class="count-input" type="text" value="1"/><input class="add" type="button" value="+"/></td>
+                    <td class="subtotal">29.90</td>
+                    <td class="delete"><a><img src="images/home/images/images_shopping_car/delete.png" /></a></td>
+                </tr>
+                <tr>
+                	<td class="checkbox"><input class="check-one-check" name="check" type="checkbox"/></td>
+                    <td class="goods"><img src="images/home/images/images_shopping_car/product.png" /><p>紫薯原浆</p><p>规格:&nbsp;1 罐</p><p>包装：真空包装</p></td>
+                    <td class="price">25.90</td>
+                    <td class="discount">--</td>
+                    <td class="count"><input class="reduce" type="button" value="-"/><input class="count-input" type="text" value="1"/><input class="add" type="button" value="+"/></td>
+                    <td class="subtotal">25.90</td>
+                    <td class="delete"><a><img src="images/home/images/images_shopping_car/delete.png" /></a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="foot">
+        	<label class="fl select-all"><input type="checkbox" class="check-all-check"/><span>&nbsp;全选</span></label>
+            <a   id="deleteAll" >删除</a>
+            <div class="frselected" id="selected">已选商品<span id="selectedTotal">0</span>件</div>
+    		<div class="frtotal">合计（不含运费）：<span id="priceTotal">￥0.00</span></div>
+        </div>
+        <div class="accounts">
+        	<div class="button"><a href="<?=yii::$app->urlManager->createUrl('fontadmin/purchase')?>">结算</a></div>
+       		<a href="<?=yii::$app->urlManager->createUrl('home/shop')?>"><img src="images/home/images/images_shopping_car/shopping.png" class="shopping" /></a>
+        </div>
+    </div>
+
+	<!--下面是footer部分-->
+	<?=$this->render('..\home\footer',['color' => ''])?>
+	<!--分享和侧悬浮-->
+	<?=$this->render('..\home\share')?>
+	<!--右悬浮-->
+	<?=$this->render('..\home\sidebox')?>
+</div>
+</body>
+</html>

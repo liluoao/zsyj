@@ -1,0 +1,122 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: liluoao
+ * Date: 2016/4/3
+ * Time: 12:10
+ */
+use yii\helpers\Html;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\Breadcrumbs;
+?>
+
+<?php $this->beginPage() ?>
+<!DOCTYPE html>
+<html lang="<?= Yii::$app->language ?>" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>留言板</title>
+    <script src="js/home/jquery-1.8.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/home/base.css">
+    <link rel="stylesheet" href="css/home/board.css" />
+    <script type="text/javascript">
+        var saveUrl = "<?=yii::$app->urlManager->createUrl('home/savemessage')?>";
+    </script>
+    <script src="js/home/board.js"></script>
+    <script language="javascript" type="text/javascript" src="js/page.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <?=$this->render('login')?>
+    <?=$this->render('header',['column'=>'aboutus'])?>
+    <!--content部分-->
+    <div class="content">
+        <div class="banner">
+            <div class="banner1"><img src="images/home/images_board/logo_left.png" /></div>
+            <div class="banner2"><img src="images/home/images_board/logobig_produt.png" width="313" height="169" /></div>
+            <div class="clear"></div>
+            <div class="banner_nav"><a href="<?=yii::$app->urlManager->createUrl('home/aboutus')?>">关于我们</a><span>></span><a href="<?=yii::$app->urlManager->createUrl('home/board')?>">留言板</a></div>
+            <div class="banner_line"></div>
+        </div>
+        <div class="content_top"><div class="all"><img src="images/home/images_board/icon_triangle.png" /><span>网友全部留言</span></div><div class="me"><a href="#">我要留言</a>>></div>
+        </div>
+        <div class="article">
+            <?if(!is_null($messages)){?>
+                <?$ind = 0;?>
+                <?foreach ($messages as $index => $val){?>
+                    <?$ind++;?>
+            <div class="article_one">
+                <div class="floor"><div class="floor_name"><?=$ind+$pages->page*$pages->pageSize?>楼：<?=$val['username']?></div>
+                    <div class="time"><?=$val['createDateTime']?>发表</div>
+            </div>
+                <p><?=$val['content']?></p>
+                    <?if(!is_null($submessages)){?>
+                        <?foreach ($submessages as $key => $data){?>
+                            <?if($val['id']==$data->parentId){?>
+                <div class="back">
+                    <div class="speak_back"><a>回复 回复人：<?=htmlspecialchars($data->username)?></a>
+                        <span><?=$data->createDateTime?></span>
+                    </div>
+                        <p><?=htmlspecialchars($data->content)?></p>
+
+                </div>
+                            <?}?>
+                        <?}?>
+                    <?}?>
+            </div>
+                <?}?>
+            <?}?>
+            <div class="article_foot">
+                <div id="pages">
+                    <a><?=$pages->totalCount?>条/<?=$pages->pageCount?>页</a>
+                    <input type="hidden" value="<?=$pages->page?>" id="curPage"/><!--当前页-->
+                    <input type="hidden" value="<?=$pages->pageCount?>" id="pageCount"/><!--总页数-->
+                    <input type="hidden" value="<?=$pages->pageSize?>" id="pageSize"/><!--每页显示数-->
+                    <?if($pages->page>0){?>
+                        <!-- 判断是否不是第一页 -->
+                        <a id="firstPageid" href="javascript:page('1')">首页</a>
+                        <a id="supPageId" href="javascript:page('2')">上一页</a>
+                    <?}?>
+                    <?=$pages->page+1?>
+                    <?if($pages->page<$pages->pageCount-1){?>
+                        <!-- 判断如果不是最后一页 -->
+                        <a id="nextPageid" href="javascript:page('3')">下一页</a>
+                        <a id="lastPageid" href="javascript:page('4')" class="a1">尾页</a>
+                    <?}?>
+                    <input type="text" size="2" class="input-text" value="<?=$pages->page+1?>" id="goPage"/><a href="javascript:page('0')">GO</a>
+                </div>
+                <div class="leave">
+                    <div class="leave_top">
+                        <span>我要留言</span>
+                        <img src="images/home/images_board/line.png" width="918" height="14" />
+                    </div>
+                        <form>
+                            <div class="leave_text">
+                                <div class="one">姓名：</div>
+                                <input type="text" name="name" id="name"  class="input-text" />
+                                <span class="tishi1">请填写您的姓名</span>
+                                <div class="xing1">*</div>
+                            </div>
+                            <div class="leave_message">
+                                <div class="one">留言：</div>
+                                        <textarea type="text" name="content" id="content"  class="input-text"></textarea>
+                                    </div>
+                            <div class="submit">
+                                <input class="buttonsave" type="button" value="提交" name="dosubmit" onclick="send()" />
+                            </div>
+                        </form>
+                    <div class="kong"></div>
+                </div>
+        </div>
+    </div>
+    </div>
+    <!--下面是footer部分-->
+    <?=$this->render('footer',['color' => ''])?>
+    <!--分享和侧悬浮-->
+    <?=$this->render('share')?>
+    <!--右悬浮-->
+    <?=$this->render('sidebox')?>
+</body>
+</html>

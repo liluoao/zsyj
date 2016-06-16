@@ -1,0 +1,138 @@
+/**
+ * Created by MacheNike on 2016/4/8.
+ */
+$(document).ready(function(){
+    check_r();
+    $('#verification').click(function(){
+        $("#t_veryCode").html('');
+    })
+
+})
+//@function 检查注册表单填写数据是否合格
+function check_r(){
+    //检查密码正确
+    $("#r_password").blur(function(){
+        var password = $("#r_password").val();
+        if(password == ''){
+            $("#r_password").html('密码不能为空！');
+            $("#r_password").focus();
+            return false;
+        }else{
+            $.ajax({
+                url: checkpasswordUrl,
+                type: "post",
+                dataType: "text",
+                data:"password="+password,
+                async: true,
+                success: function (data) {
+                    if(data == "success"){
+                        $("#t_password").html('');
+                        return true;
+                    }else{
+                        $("#t_password").html('密码错误！');
+                        $("#t_password").focus();
+                        return false;
+                    }
+
+                },
+                error:function(data){
+                    $("#t_password").html('连接服务器失败！');
+                    $("#t_password").focus();
+                    return false;
+                }
+            });
+        }
+    })
+    //检查密码填写规范
+    $("#r_password2").blur(function() {
+        if($("#t_password2").html() != ''){
+            return;
+        }
+        var password = $("#r_password2").val();
+        if (password == '') {
+            $("#t_password2").html('密码不能为空！');
+            $("#r_password2").focus();
+            return false;
+        }else{
+            $("#t_password2").html('');
+            return true;
+        }
+    })
+    //检查两次输入密码是否一致
+    $("#r_password3").blur(function() {
+        var password2 = $("#r_password2").val();
+        var password3 = $("#r_password3").val();
+        if (password3 == '') {
+            $("#t_password3").html('密码不能为空！');
+            $("#r_password3").focus();
+            return false;
+        }else if(password2 != password3){
+            $("#t_password3").html('两次密码不一致！');
+            $("#r_password3").focus();
+            return false;
+        }else{
+            $("#t_password3").html('');
+            return true;
+        }
+    })
+}
+function submit_check(){
+    var password = $("#r_password").val();
+    if (password == '') {
+        $("#t_password").html('密码不能为空！');
+        $("#r_password").focus();
+        return false;
+    }else{
+        return true;
+    }
+
+    var password2 = $("#r_password2").val();
+    var password3 = $("#r_password3").val();
+    if (password3 == '') {
+        $("#t_password2").html('密码不能为空！');
+        $("#r_password3").focus();
+        return false;
+    }else if(password2 != password3){
+        $("#t_password2").html('两次密码不一致！');
+        $("#r_password3").focus();
+        return false;
+    }else{
+        return true;
+    }
+}
+function send() {
+    if (submit_check()) {
+        var password = $('#r_password2').val();
+        var verification = $('#verification').val();
+        var paraStr = '';
+        paraStr = "password=" + password + "&verifyCode=" + verification;
+        $.ajax({
+            url: passwordUrl,
+            type: "post",
+            dataType: "text",
+            data: paraStr,
+            async: false,
+            success: function (data) {
+                if (data == "verifyError") {
+                    $("#t_veryCode").html('验证码错误！');
+
+                    $("#verification").val('');
+                    $("#verification").focus();
+                    $('#certImg').click();
+                    return;
+                } else {
+                    alertTip('修改成功！',true);
+                    $('#r_password').val('');
+                    $("#r_password2").val('');
+                    $("#r_password3").val('');
+                    $('#verification').val('');
+                }
+
+            },
+            error: function (data) {
+                alertTip('修改失败！',true);
+                return false;
+            }
+        });
+    }
+}

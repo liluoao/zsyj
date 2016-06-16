@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>关于我们</title>
+<link rel="stylesheet" type="text/css" href="../css/aboutus.css"/>
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<link rel="stylesheet" href="../css/login.css" />
+<link rel="stylesheet" href="../css/share_popup.css" />
+<link rel="stylesheet" href="../css/slide_share.css" />
+<link rel="stylesheet" href="../css/right_suspend.css" />
+<script src="../js/share.js"></script>
+<!--微信悬浮-->
+<script>
+		$(function(){
+    		$(".weixin").hover(function(){
+        		$(".weixinerweima").show();
+			},function(){
+    			$(".weixinerweima").hide();
+			})			
+			$('.gywm').hover(function(){
+				$('.xiala').css('display','block');	
+			},function(){
+				$('.xiala').css('display','none');
+			})		
+			$(".people_login").click(function(){
+				$("#full").show();	
+			});
+				$(".close").click(function(){
+				$("#full").hide();
+			});
+		}) 			
+</script>
+
+</head>
+
+<body>
+ <!--分享和侧悬浮-->
+<script>
+	window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"slide":{"type":"slide","bdImg":"4","bdPos":"3","bdTop":"150"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<div data-bd-bind="" class="bdshare-slide-button-box" style="top:100px;width:0px; right:0px;">
+ 	<a style="left:-40px;" onclick="return false;" class="bdshare-slide-button"></a>
+    <div style="width:0px;display:none;" class="bdshare-slide-list-box"><div class="bdshare-slide-top">分享到</div>
+    <div class="bdshare-slide-list">
+    	<ul style="width: 226px;" class="bdshare-slide-list-ul">
+        <li><a href="#" onclick="return false;" class="slide-mshare" data-cmd="mshare">一键分享</a></li>
+        <li><a href="#" onclick="return false;" class="slide-qzone" data-cmd="qzone">QQ空间</a></li>
+        <li><a href="#" onclick="return false;" class="slide-tsina" data-cmd="tsina">新浪微博</a></li>
+        <li><a href="#" onclick="return false;" class="slide-bdysc" data-cmd="bdysc">百度云收藏</a></li>
+        <li><a href="#" onclick="return false;" class="slide-weixin" data-cmd="weixin">微信</a></li>
+        <li><a href="#" onclick="return false;" class="slide-renren" data-cmd="renren">人人网</a></li>
+        <li><a href="#" onclick="return false;" class="slide-tqq" data-cmd="tqq">腾讯微博</a></li>
+        <li><a href="#" onclick="return false;" class="slide-bdxc" data-cmd="bdxc">百度相册</a></li>
+        <li><a href="#" onclick="return false;" class="slide-kaixin001" data-cmd="kaixin001">开心网</a></li>
+        <li><a href="#" onclick="return false;" class="slide-tqf" data-cmd="tqf">腾讯朋友</a></li>
+        <li><a href="#" onclick="return false;" class="slide-tieba" data-cmd="tieba">百度贴吧</a></li>
+        <li><a href="#" onclick="return false;" class="slide-douban" data-cmd="douban">豆瓣网</a></li>
+        <li><a href="#" onclick="return false;" class="slide-bdhome" data-cmd="bdhome">百度新首页</a></li>
+        <li><a href="#" onclick="return false;" class="slide-sqq" data-cmd="sqq">QQ好友</a></li>
+        <li><a href="#" onclick="return false;" class="slide-thx" data-cmd="thx">和讯微博</a></li>
+        <li><a href="#" onclick="return false;" class="slide-ibaidu" data-cmd="ibaidu">百度中心</a></li>
+		</ul>
+    </div>
+    <div style="width: 226px;" class="bdshare-slide-bottom">
+    	<a href="#" onclick="return false;" class="slide-more" data-cmd="more">更多...</a>
+    </div>
+	</div>
+</div>
+<iframe class="bdshare_dialog_bg" style="top: 140.5px; left: 524.5px; display: none;" frameborder="0"></iframe>
+<div class="bdshare_dialog_box" style="top: 140.5px; left: 524.5px; display: none;">
+	<div class="bdshare_dialog_top">
+    	<a class="bdshare_dialog_close" href="#" onclick="return false;" title="关闭"></a>分享到</div>						
+        <ul class="bdshare_dialog_list">
+        <li><a href="#" onclick="return false;" class="popup_mshare" data-cmd="mshare">一键分享</a></li>
+        <li><a href="#" onclick="return false;" class="popup_qzone" data-cmd="qzone">QQ空间</a></li>
+        <li><a href="#" onclick="return false;" class="popup_tsina" data-cmd="tsina">新浪微博</a></li>
+        <li><a href="#" onclick="return false;" class="popup_bdysc" data-cmd="bdysc">百度云收藏</a></li>
+        <li><a href="#" onclick="return false;" class="popup_weixin" data-cmd="weixin">微信</a></li>
+        <li><a href="#" onclick="return false;" class="popup_renren" data-cmd="renren">人人网</a></li>
+        <li><a href="#" onclick="return false;" class="popup_tqq" data-cmd="tqq">腾讯微博</a></li>
+        <li><a href="#" onclick="return false;" class="popup_bdxc" data-cmd="bdxc">百度相册</a></li>
+        <li><a href="#" onclick="return false;" class="popup_kaixin001" data-cmd="kaixin001">开心网</a></li>
+        <li><a href="#" onclick="return false;" class="popup_tqf" data-cmd="tqf">腾讯朋友</a></li>
+        <li><a href="#" onclick="return false;" class="popup_tieba" data-cmd="tieba">百度贴吧</a></li>
+        <li><a href="#" onclick="return false;" class="popup_douban" data-cmd="douban">豆瓣网</a></li>
+        <li><a href="#" onclick="return false;" class="popup_bdhome" data-cmd="bdhome">百度新首页</a></li>
+        <li><a href="#" onclick="return false;" class="popup_sqq" data-cmd="sqq">QQ好友</a></li>
+        <li><a href="#" onclick="return false;" class="popup_thx" data-cmd="thx">和讯微博</a></li>
+        <li><a href="#" onclick="return false;" class="popup_ibaidu" data-cmd="ibaidu">百度中心</a></li>
+        <li><a href="#" onclick="return false;" class="popup_meilishuo" data-cmd="meilishuo">美丽说</a></li>
+        <li><a href="#" onclick="return false;" class="popup_mogujie" data-cmd="mogujie">蘑菇街</a></li>
+        <li><a href="#" onclick="return false;" class="popup_diandian" data-cmd="diandian">点点网</a></li>
+        <li><a href="#" onclick="return false;" class="popup_huaban" data-cmd="huaban">花瓣</a></li>
+        <li><a href="#" onclick="return false;" class="popup_duitang" data-cmd="duitang">堆糖</a></li>
+        <li><a href="#" onclick="return false;" class="popup_hx" data-cmd="hx">和讯</a></li>
+        <li><a href="#" onclick="return false;" class="popup_fx" data-cmd="fx">飞信</a></li>
+        <li><a href="#" onclick="return false;" class="popup_youdao" data-cmd="youdao">有道云笔记</a></li>
+        <li><a href="#" onclick="return false;" class="popup_sdo" data-cmd="sdo">麦库记事</a></li>
+        <li><a href="#" onclick="return false;" class="popup_qingbiji" data-cmd="qingbiji">轻笔记</a></li>
+        <li><a href="#" onclick="return false;" class="popup_people" data-cmd="people">人民微博</a></li>
+        <li><a href="#" onclick="return false;" class="popup_xinhua" data-cmd="xinhua">新华微博</a></li>
+        <li><a href="#" onclick="return false;" class="popup_mail" data-cmd="mail">邮件分享</a></li>
+        <li><a href="#" onclick="return false;" class="popup_isohu" data-cmd="isohu">我的搜狐</a></li>
+        <li><a href="#" onclick="return false;" class="popup_yaolan" data-cmd="yaolan">摇篮空间</a></li>
+        <li><a href="#" onclick="return false;" class="popup_wealink" data-cmd="wealink">若邻网</a></li>
+        <li><a href="#" onclick="return false;" class="popup_ty" data-cmd="ty">天涯社区</a></li>
+        <li><a href="#" onclick="return false;" class="popup_iguba" data-cmd="iguba">股吧</a></li>
+        <li><a href="#" onclick="return false;" class="popup_fbook" data-cmd="fbook">Facebook</a></li>
+        <li><a href="#" onclick="return false;" class="popup_twi" data-cmd="twi">Twitter</a></li>
+        <li><a href="#" onclick="return false;" class="popup_linkedin" data-cmd="linkedin">linkedin</a></li>
+        <li><a href="#" onclick="return false;" class="popup_h163" data-cmd="h163">网易热</a></li>
+        <li><a href="#" onclick="return false;" class="popup_evernotecn" data-cmd="evernotecn">印象笔记</a></li>
+        <li><a href="#" onclick="return false;" class="popup_copy" data-cmd="copy">复制网址</a></li>
+        <li><a href="#" onclick="return false;" class="popup_print" data-cmd="print">打印</a></li>
+        </ul>
+        <div class="bdshare_dialog_bottom"><a href="http://share.baidu.com/" target="_blank;">百度分享</a></div>
+</div>
+<div class="right">
+	<ul>
+    	<li><a href="#"><div class="sidebox1"></div></a></li>
+	    <li><a href="iavascript:void(0)" href="#" ><div class="sidebox2"></div></a></li>
+	</ul>
+</div> 
+
+<script>
+	$(function(){
+		$(".right ul li").clicck(function(){	
+		},function(){
+			$(this).find(".sidebox1")	
+		});	
+	});
+</script>   
+ <!--登陆部分-->
+    <div id="full" style="display:none;">
+        <div class="login">
+            <div class="login_header">
+                <a class="log">登录</a><a href="#" class="close"><img src="../images/images_login/header_icon.png"/></a>
+            </div>
+            <div class="login_center">
+                <img src="../images/images_login/login_ogobig.png" />
+                <form class="list">
+                    <input class="username" type="text" size="30px" placeholder="登录名" />
+                    <input class="password" type="text" size="30px" placeholder="密码" />
+                    <input class="rmbuser" type="checkbox" /><a class="rmbuser_1">记住密码</a><a class="rmbuser_2" href="forget_password.html">忘记密码</a>
+                    <input class="sub" type="submit" value="登录" onclick="Save()"/> 
+                </form>
+            </div>
+        </div>
+    </div>
+<!--header部分-->
+    <div id="header">
+        <div class="header_nav">
+            <div class="logo">
+                <a href="index.html"><img src="../images/images_Home/nav_logo.png"></a>
+            </div>
+            <div class="nav">    
+                <ul>
+                    <li><a href="index.html">首页</a></li>						                     
+                    <li><a href="zsyj_shop.html">紫薯商城</a></li>
+                    <li><a href="professional.html">技术专业</a></li>
+                    <li><a href="talent_recruitment.html">人才招聘</a></li>
+                    <li class="gywm"><a href="aboutus.html" class="on">关于我们</a>
+                        <div class="xialala" style="position:absolute;">
+                            <div class="xiala" >
+                                <a href="contact.html">联系我们</a>                                 
+                                <a href="media.html">媒体声音</a>
+                                <a href="board.html">留言板</a>
+                                <a href="aboutus.html">我们是谁</a>
+                            </div>	
+                        </div>    
+                    </li>   
+                </ul>
+            </div>
+            <div class="header_login">
+                <a href="#" id="btn" class="people_login">个人登录</a><span>|</span><a href="register.html" class="people_login">个人注册</a>
+                <div class="company_login"><a href="#">企业管理入口</a></div>
+            </div>
+        </div>
+    </div>
+<!--content部分-->
+    <div class="box1">
+        <div class="box">
+            <img src="../images/images_my/my_left1.jpg" class="my_left1" />
+            <img src="../images/images_my/my_right.png" class="my_right" />
+            <div class="my_text">
+            </div>
+            <span class="us">我们是谁</span>
+            <div class="text">
+                <p>本紫薯原浆饮料，是一款原汁原味，纯天然饮料，主要功能是抗氧化、抗衰老、美容、通便，未做任何添加的纯紫薯风味饮料。本产品采用生物仿生技术加工，在不破坏紫薯天然功能营养活性的前提下，最大限度保留了紫薯的特殊功能物质，在湖北地区与合作社签约种植，选取 “紫薯王”品种，使用有机肥和生物农药，从源头保证本原料的安全和绿色。</p>
+            </div>
+        </div>
+        <div class="product">
+             <img src="../images/images_my/Technical1_cup.jpg" class="Technical1_cup" />
+             <img src="../images/images_my/Technical2_p.jpg" class="Technical2_p" />
+             <img src="../images/images_my/right.jpg" class="right_product" />
+             <span class="technology">技术说明</span>
+             <img src="../images/images_my/Technical3_p.jpg" class="Technical3_p" />
+             <div class="Technical">
+                <p>本公司经过多年的研究烤红薯的美拉德反应机理及其物质成分转化过程，采用生物仿生技术，按烤红薯反应机理，在低温状态下，将淀粉转化成多糖、蛋白质转化成多肽、纤维转化成膳食纤维，且几乎保留了紫薯的所有特种高附加值保健功能物质，尤其是花青素、维生素、硒铁等抗氧化、抗疾病活性成分，真正保持了紫薯的原汁原味。</p>
+             </div>
+        </div>
+        <div class="super">
+             <img src="../images/images_my/advantage_right.jpg" class="advantage_right" />
+             <img src="../images/images_my/advantage_left.png" class="advantage_left" />
+             <img src="../images/images_my/advantage_left2.png" class="advantage_left2">
+             <span class="youshi">产品优势</span>
+             <img src="../images/images_my/my_text2.jpg" class="my_text2" />
+             <div class="chanpin">
+                <p class="one">1.利于通便：13%左右的纤维素，经过生物处理转化为可溶性的膳食纤维，促进肠胃蠕动，清理肠腔内滞留的粘液、积气和腐败物，改善消化道环境，防止胃肠道疾病的发生</p>
+                <p class="two">2.助于减肥：迅速补充营养、增强机体免疫力。浓度度，有饱腹感，可代替主食</p>
+                <p class="three">3.调节人体生理功能：(1)花青素的抗氧化、抗衰老、清除自由基的能力是维生素C的20倍、维生素E的50倍。(2)18种易被人体消化和吸收的氨基酸。
+        (3)“抗癌大王”硒和”人体抗疲劳、补血的必要元素”铁的含量丰富</p>
+             </div>
+        </div>
+    </div>
+<!--footer部分-->
+	<div id="footer">
+		<div class="footer_logo"  style="position:relative;">
+			<img src="../images/images_Home/icon_footer_left.png" style="position:absolute; left:12.25%;;top:-90px;z-index:999;">
+		</div>
+		<div class="footer_logo"  style="position:relative;">
+			<img src="../images/images_Home/icon_footer_right.png" style="position:absolute; right:5.5%;;top:-92px;z-index:999;">
+		</div>	
+		<div class="footer_bg">
+			<div class="footer_bg_img">
+				<img src="../images/images_Home/footer_BG0.jpg">
+			</div>
+		</div>
+		<div class="footer_content_big" style="position:relative;width:1200px;margin:0 auto;">	
+			<div class="footer_content" style="position:absolute;left:19%;top:-450px;margin:0 auto;"><!--top根据页面情况修改-->
+				<a href="index.html"><img src="../images/images_Home/footer_logo.png" class="footer_content_logo"></a>
+				<ul>
+					<li class="about">关于我们</li>
+					<li class="who"><a href="aboutus.html">我们是谁</a></li>
+					<li class="who"><a href="media.html">媒体声音</a></li>
+					<li class="who"><a href="contact.html">联系我们</a></li>
+					<li class="who"><a href="talent_recruitment.html">加入我们</a></li>
+				</ul>
+				<ul>
+					<li class="about">商务合作</li>
+					<li class="who"><a href="contact.html">商家合作</a></li>					
+				</ul>
+				<ul>
+					<li class="about">服务与声明</li>
+					<li class="who"><a href="statement.html">声明</a></li>
+				</ul>
+				<div class="footer_content_line">
+				</div>
+				<p>关注我们</p>
+				<div class="sina">						
+				</div>
+				<div class="weixin">						
+					<img src="../images/images_Home/weixinerweima.jpg" style="width:120px;height:120px;position:absolute;top:-160px;left:-40px;z-index:9999;display:none" class="weixinerweima">
+				</div>					
+				<div class="footer_content_text">CopyRight ©2015-2016  武汉凯丽金生物科技有限公司  All Rights Reserve</div>
+				<!--cnzz-->
+				<script type="text/javascript">
+					var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000084529'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000084529%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+             	</script>				
+			</div>
+		</div>
+	</div>    
+</body>
+</html>

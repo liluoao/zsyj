@@ -1,0 +1,273 @@
+<?php
+
+namespace app\controllers;
+
+use yii;
+use app\models\Product;
+use yii\web\Controller;
+use app\models\Dictitem;
+use app\models\Message;
+use app\models\Submessage;
+use app\models\Contact;
+use app\common\Common;
+use yii\data\Pagination;
+use app\models\User;
+use app\models\Shopcart;
+use app\models\Userinfo;
+
+class FontadminController extends Controller
+{
+    public $layout = false; //设置使用的布局文件
+
+    public $enableCsrfValidation = false;
+    public function actionIndex()
+    {
+        return $this->render('index');
+    }
+
+    //跳转到后台我的地址页面
+    public function actionAddressafter()
+    {
+        if(Yii::$app->request->isPost){
+
+        }else{
+            return $this->render('addressafter');
+        }
+
+    }
+
+    //跳转到后台购物车
+    public function actionShoppingcart()
+    {
+        if(yii::$app->session['username'] == null){
+            echo "<script>alertTip('请先登录！')</script>";
+            return $this->render('home');
+        }else{
+            $userId = Yii::$app->session['userId'];
+
+            $query = new \yii\db\Query();
+            $products = $query->select('b.id as id,b.productTitle as productTitle,b.productPrice as productPrice,b.productDiscount as productDiscount,b.picUrl as picUrl,b.productSize as productSize')
+                ->from('zsyj_shopcart a')
+                ->where('userId = :userId',[":userId" => $userId])
+                ->rightJoin('zsyj_product b','a.productId = b.id')
+                ->all();
+
+            return $this->render('shoppingcart',[
+                'products' => $products
+            ]);
+        }
+    }
+
+    //跳转到后台结算
+    public function actionPurchase()
+    {
+        if(Yii::$app->request->isPost){
+
+        }else{
+            $userId = Yii::$app->session['userId'];
+            $query = new \yii\db\Query();
+            $products = $query->select('b.id as id,b.productTitle as productTitle,b.productPrice as productPrice,b.productDiscount as productDiscount,b.picUrl as picUrl,b.productSize as productSize')
+                ->from('zsyj_shopcart a')
+                ->where('userId = :userId',[":userId" => $userId])
+                ->rightJoin('zsyj_product b','a.productId = b.id')
+                ->all();
+
+            $userinfos = Userinfo::find()->where('userId = :userId',[":userId" => $userId])->orderBy('userInfoClicks')->all();
+            return $this->render('purchase',[
+                'products' => $products,
+                'userinfos' => $userinfos
+            ]);
+        }
+
+    }
+
+    //跳转到完成订单
+    public function actionOrdercomplete()
+    {
+        if(Yii::$app->request->isPost){
+
+        }else{
+            $userId = Yii::$app->session['userId'];
+            $userinfo = Userinfo::find()->where('userId = :userId',[":userId" => $userId])->one();
+            return $this->render('ordercomplete',[
+                'userinfo' => $userinfo
+            ]);
+        }
+
+    }
+
+    //跳转到订单列表
+    public function actionOrderafter()
+    {
+        if(Yii::$app->request->isPost){
+
+        }else{
+            return $this->render('orderafter');
+        }
+
+    }
+
+    //跳转到订单详情
+    public function actionOrderdetail()
+    {
+        if(Yii::$app->request->isPost){
+
+        }else{
+            return $this->render('orderdetail');
+        }
+
+    }
+
+    //跳转到个人资料
+    public function actionPersonaldata()
+    {
+        if(Yii::$app->request->isPost){
+
+        }else{
+            $id = Yii::$app->session['userId'];
+            $user = User::findOne($id);
+            $dictItem = Dictitem::find()
+                ->where(['dictCode' => 'DICT_SEX'])
+                ->all();
+            $dictItemS = Dictitem::find()
+                ->where(['dictCode' => 'DICT_MEMBER'])
+                ->all();
+            return $this->render('personaldata',[
+                'user' => $user,
+                'dictItem' => $dictItem,
+                'dictItemS' => $dictItemS
+            ]);
+        }
+
+    }
+
+    //跳转到账户安全
+    public function actionPassword()
+    {
+        if(Yii::$app->request->isPost){
+            $verifyCode = Yii::$app->request->post('verifyCode');
+            if(strtolower(Yii::$app->session['userCode']) == strtolower($verifyCode)){
+                $fontUser = User::findOne(Yii::$app->session['userId']);
+                $fontUser->password = Common::hashMD5(Yii::$app->request->post('password'));
+                if($fontUser->save()){
+                    return 'success';
+                }else{
+                    return 'fail';
+                }
+                Yii::$app->session->remove('userCode');
+            }else{
+                return 'verifyError';
+            }
+        }else{
+            return $this->render('password');
+        }
+
+    }
+
+    //跳转到我的消息
+    public function actionMymessages()
+    {
+        if(Yii::$app->request->isPost){
+
+        }else{
+            $userId = Yii::$app->session['userId'];
+            $messages = Message::find()->where('userId = :userId',[":userId" => $userId])->all();
+            return $this->render('mymessages',[
+                'messages' => $messages
+            ]);
+        }
+
+    }
+
+    //跳转到我的留言
+    public function actionMynews()
+    {
+        if(Yii::$app->request->isPost){
+
+        }else{
+            return $this->render('mynews');
+        }
+
+    }
+
+    //保存用户信息
+    public function actionUpdate(){
+        $id = Yii::$app->request->post('id');
+        $user = User::findOne($id);
+        $user->mobilephone = Yii::$app->request->post('mobilephone');
+        $user->sex = Yii::$app->request->post('sex');
+        $user->email = Yii::$app->request->post('email');
+        $user->postcode = Yii::$app->request->post('postcode');
+        $user->areaAddress = Yii::$app->request->post('areaAddress');
+        if ($user->save()){
+            return 'success';
+        }else{
+            return 'fail';
+        }
+    }
+
+    //验证密码
+    public function actionCheckpassword(){
+        $password = Yii::$app->request->post("password");
+        $userId = Yii::$app->session['userId'];
+        $user = User::findOne($userId);
+        if($user->password == Common::hashMD5($password)){
+            return 'success';
+        }else{
+            return 'fail';
+        }
+    }
+
+    //加入购物车
+    public function actionAddshopcart(){
+        $productId = Yii::$app->request->post("id");
+        if(Shopcart::find()->where('productId = :productId',[":productId" => $productId])){
+            echo "<script>alert('购物车已有此商品')</script>";
+        }else{
+            $shopcart = new Shopcart();
+            $shopcart->productId = $productId;
+            $shopcart->userId = Yii::$app->session['userId'];
+            $shopcart->save();
+        }
+        return 'success';
+    }
+
+    //从购物车删除
+    public function actionDeleteshopcart(){
+        $productId = Yii::$app->request->post("id");
+        $userId = Yii::$app->session['userId'];
+        Shopcart::deleteAll('userId = :userId,productId = :productId',[":userId" => $userId,":productId" => $productId]);
+        return 'success';
+    }
+
+    //新增收货地址
+    public function actionAddaddress()
+    {
+        if(Yii::$app->request->isPost){
+
+        }else{
+            $inform = New Userinfo();
+            $inform->id = Common::generateID();
+            $inform->userId =yii::$app->session['userId'];
+            $inform->recipientName = Yii::$app->request->get("username");
+            $inform->mobilephone = Yii::$app->request->get("tel");
+            $inform->areaAddress = Yii::$app->request->get("city");
+            $inform->detailAddress = Yii::$app->request->get("address");
+            $inform->save();
+            $userId = Yii::$app->session['userId'];
+            $query = new \yii\db\Query();
+            $products = $query->select('b.id as id,b.productTitle as productTitle,b.productPrice as productPrice,b.productDiscount as productDiscount,b.picUrl as picUrl,b.productSize as productSize')
+                ->from('zsyj_shopcart a')
+                ->where('userId = :userId',[":userId" => $userId])
+                ->rightJoin('zsyj_product b','a.productId = b.id')
+                ->all();
+
+            $userinfos = Userinfo::find()->where('userId = :userId',[":userId" => $userId])->orderBy('userInfoClicks')->all();
+            return $this->render('purchase',[
+                'products' => $products,
+                'userinfos' => $userinfos
+            ]);
+        }
+
+    }
+}

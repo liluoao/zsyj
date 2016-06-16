@@ -1,0 +1,42 @@
+<?php
+
+namespace app\controllers;
+use yii;
+
+class HomeController extends \yii\web\Controller
+{
+    public $layout = false; //设置使用的布局文件
+    public $menuModels;
+    public $menuId;
+    public $menus;
+    public $enableCsrfValidation = false;
+    /*
+     * @function 跳转到主页
+     */
+    public function actionIndex()
+    {
+        if(Yii::$app->request->isPost){
+
+        }
+        return $this->render('index');
+    }
+    //@function 注册跳转or注册数据
+    public function actionRegister(){
+        if(Yii::$app->request->isPost){
+
+        }else{
+            return $this->render('register');
+        }
+    }
+
+    //@function 跳转到商城
+    public function actionShop(){
+        if(Yii::$app->request->isPost){
+
+        }else{
+            return $this->render('shop');
+        }
+    }
+
+
+}

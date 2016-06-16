@@ -1,0 +1,26 @@
+//提交帖子
+function send() {
+		var paraStr = "";
+		paraStr += "name=" + $("#name").val();
+		paraStr += "&userId=" + $("#userId").val();
+		paraStr += "&content=" + $("#content").val();
+		$.ajax({
+			url: saveUrl,
+			type: "post",
+			dataType: "text",
+			data: paraStr,
+			async: "false",
+			success: function (data) {
+				if (data == "success") {
+					alert('提交成功！');
+					window.location.href= boardUrl;
+				} else {
+					alert('提交失败！');
+				}
+
+			},
+			error: function (data) {
+				alert('提交失败！');
+			}
+		});
+};

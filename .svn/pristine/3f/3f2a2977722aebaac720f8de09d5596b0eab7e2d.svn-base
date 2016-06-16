@@ -1,0 +1,9 @@
+/**
+ * Created by Administrator on 2016/4/2.
+ */
+$(document).ready(function() {
+    $(".right ul li").click(function () {
+    }, function () {
+        $(this).find(".sidebox1")
+    });
+});

@@ -1,0 +1,241 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: liluoao
+ * Date: 2016/4/16
+ */
+namespace app\controllers;
+
+use app\models\User;
+use Yii;
+use yii\filters\AccessControl;
+use yii\web\Controller;
+use yii\filters\VerbFilter;
+use app\models\BackendMenu;
+use yii\helpers\Json;
+use app\common\Common;
+use app\models\Dictitem;
+use yii\data\Pagination;
+
+class FrontuserController extends Controller
+{
+    public $layout = false; //设置使用的布局文件
+    public $enableCsrfValidation = false;
+
+    //默认
+    public function actionList(){
+        return $this->render('list');
+    }
+
+    //增加
+    public function actionAdd(){
+        return $this->render('add');
+    }
+
+    //检查是否重复
+    public function actionCheckusername(){
+        $username = Yii::$app->request->get('username');
+        $user = User::find()->where(['username' => $username])->all();
+        if(sizeof($user) == 0){
+            return "success";
+        }else{
+            return "exist";
+        }
+    }
+
+    //插入
+    public function actionInsert(){
+        $user = new User();
+        $user->id = Common::generateID();
+        $user->username = Yii::$app->request->post('username');
+        $user->truename = Yii::$app->request->post('truename');
+        $user->password = Common::hashMD5(Yii::$app->request->post('password'));
+        $user->mobilephone = Yii::$app->request->post('mobilephone');
+        $user->sex = Yii::$app->request->post('sex');
+        $user->userState = '1';
+        $user->userType = '0';//一般采购用户-0；企业采购用户-1；后台界面-2
+        if($user->save()){
+            return "success";
+        }else{
+            return "fail";
+        }
+    }
+
+    //列表
+    public function actionListall(){
+        $username = Yii::$app->request->get('username');
+        $truename = Yii::$app->request->get('truename');
+        $state = Yii::$app->request->get('state');
+        $para=array();
+        $para['username'] = $username;
+        $para['truename'] = $truename;
+        $para['state'] = $state;
+        $whereStr = 'userType = 0';
+        if($username != ''){
+            $whereStr = $whereStr." and username like '%".$username."%'";
+        }
+        if($truename != ''){
+            $whereStr = $whereStr." and truename like '%".$truename."%'";
+        }
+        if($state != ''){
+            $whereStr = $whereStr." and userState=".$state;
+        }
+        $users = User::find()->where($whereStr);
+        $pages = new Pagination(['totalCount' =>$users->count(), 'pageSize' => Common::PAGESIZE]);
+        $models = $users->offset($pages->offset)->limit($pages->limit)->all();
+        $dictItem = Dictitem::find()
+            ->where(['dictCode' => 'DICT_STATE'])
+            ->all();
+        $dictItemS = Dictitem::find()
+            ->where(['dictCode' => 'DICT_SEX'])
+            ->all();
+        $dictItemSS = Dictitem::find()
+            ->where(['dictCode' => 'DICT_MEMBER'])
+            ->all();
+        foreach($models as $key=>$data) {
+            foreach ($dictItem as $index => $value) {
+                if ($data->userState == $value->dictItemCode) {
+                    $models[$key]->userState = $value->dictItemName;
+                }
+            }
+            foreach($dictItemS as $index=>$value){
+                if($data->sex == $value->dictItemCode){
+                    $models[$key]->sex = $value->dictItemName;
+                }
+            }
+            foreach($dictItemSS as $index=>$value){
+                if($data->member == $value->dictItemCode){
+                    $models[$key]->member = $value->dictItemName;
+                }
+            }
+        }
+        return $this->render('listall',[
+            'users' => $models,
+            'pages' => $pages,
+            'para' => $para,
+        ]);
+
+
+    }
+
+    //详情
+    public function actionDetail()
+    {
+        $id = Yii::$app->request->get('id');
+        $user = User::findOne($id);
+        //字典反转
+        $dictItem = Dictitem::find()
+            ->where(['dictCode' => 'DICT_STATE'])
+            ->all();
+        $dictItemS = Dictitem::find()
+            ->where(['dictCode' => 'DICT_SEX'])
+            ->all();
+        $dictItemSS = Dictitem::find()
+            ->where(['dictCode' => 'DICT_MEMBER'])
+            ->all();
+        foreach ($dictItem as $index => $value) {
+            if ($user->userState == $value->dictItemCode) {
+                $user->userState = $value->dictItemName;
+            }
+        }
+        foreach($dictItemS as $index=>$value){
+            if($user->sex == $value->dictItemCode){
+                $user->sex = $value->dictItemName;
+            }
+            foreach ($dictItemSS as $index => $value) {
+                if ($user->member == $value->dictItemCode) {
+                    $user->member = $value->dictItemName;
+                }
+            }
+        }
+        return $this->render('detail',[
+            'user'=>$user,
+        ]);
+    }
+
+    //修改
+    public function actionEdit(){
+        $id = Yii::$app->request->get('id');
+        $user = User::findOne($id);
+        $sexdict = Dictitem::find()->where(['dictCode' => 'DICT_SEX'])->all();
+        $statedict = Dictitem::find()->where(['dictCode' => 'DICT_STATE'])->all();
+        $memberdict = Dictitem::find()->where(['dictCode' => 'DICT_MEMBER'])->all();
+        return $this->render('edit',[
+            'user' => $user,
+            'sexdict' => $sexdict,
+            'statedict' => $statedict,
+            'memberdict'=> $memberdict,
+        ]);
+    }
+
+    //更新
+    public function actionUpdate(){
+        $id = Yii::$app->request->post('id');
+        $user = User::findOne($id);
+        $user->truename = Yii::$app->request->post('truename');
+        $user->mobilephone = Yii::$app->request->post('mobilephone');
+        $user->sex = Yii::$app->request->post('sex');
+        $user->userState = Yii::$app->request->post('userState');
+        $user->member = Yii::$app->request->post('member');
+        $user->email = Yii::$app->request->post('email');
+        $user->point = Yii::$app->request->post('point');
+        if ($user->save()){
+            return 'success';
+        }else{
+            return 'fail';
+        }
+    }
+
+    //重置密码
+    public function actionReset(){
+        $id = Yii::$app->request->post('id');
+        $user = User::findOne($id);
+        $user->password = Common::hashMD5(Common::PASSWORD);
+        if($user->save()){
+            return "success";
+        }else{
+            return "fail";
+        }
+    }
+
+    //删除一个
+    public function actionDelete(){
+        $id = Yii::$app->request->post("id");
+        $user = User::findOne($id);
+        if($user->delete()){
+            return "success";
+        }else{
+            return "fail";
+        }
+    }
+
+    //删除多个
+    public function actionDeleteall(){
+        $ids = Yii::$app->request->post("ids");
+        $ids_array = explode('-',$ids);
+        foreach($ids_array as $key => $data){
+            User::deleteAll('id = :id',[':id'=>$data]);
+        }
+        return 'success';
+    }
+
+    //修改密码
+    public function actionChangepwd(){
+        $oldPWD = Yii::$app->request->post('oldPWD');
+        $newPWD = Yii::$app->request->post('newPWD');
+        $user = User::find()
+            ->where(('id = :id and password = :password'),
+                [
+                    ':id' => Yii::$app->session['userId'],
+                    ':password' => Common::hashMD5($oldPWD)
+                ])
+            ->one();
+        if(is_null($user)){
+            return "fail";
+        }else{
+            $user->password = Common::hashMD5($newPWD);
+            $user->save();
+            return "success";
+        }
+    }
+}

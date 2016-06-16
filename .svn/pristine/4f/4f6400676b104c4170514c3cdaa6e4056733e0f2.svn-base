@@ -1,0 +1,113 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: liluoao
+ * Date: 2016/3/21
+ */
+namespace app\controllers;
+
+use app\models\Message;
+use app\models\Submessage;
+use Yii;
+use yii\filters\AccessControl;
+use yii\web\Controller;
+use yii\filters\VerbFilter;
+use yii\helpers\Json;
+use app\common\Common;
+use yii\data\Pagination;
+use app\models\Dictitem;
+use app\models\User;
+
+class MessageController extends Controller
+{
+    public $layout = false;
+    public $enableCsrfValidation = false;
+
+    public function actionList()
+    {
+        return $this->render('list');
+    }
+
+    /*
+     * 留言列表页
+     */
+    public function actionListall(){
+        $date1 = Yii::$app->request->get('_senderDateTime');
+        $data2 = Yii::$app->request->get('senderDateTime_');
+        $para=array();
+        $para['date1'] = $date1;
+        $para['data2'] = $data2;
+        $whereStr = '1=1';//查询条件
+        if ($date1 != '') {
+            $whereStr = $whereStr . " and createDateTime >= '" . $date1 . "%'";
+        }
+        if ($data2 != '') {
+            $whereStr = $whereStr . " and createDateTime <= '" . $data2 . "%'";
+        }
+        $messages = Message::find()->where($whereStr);
+        $pages = new Pagination(['totalCount' =>$messages->count(), 'pageSize' => Common::PAGESIZE]);//分页
+        $models = $messages->offset($pages->offset)->limit($pages->limit)->orderBy('createDateTime DESC')->all();
+
+        return $this->render('listall',[
+            'messages' => $models,
+            'pages' => $pages,
+            'para' => $para,
+        ]);
+    }
+
+    /*
+     * 回帖
+     */
+    public function actionBack(){
+        $id = Yii::$app->request->get('id');
+        $message = Message::findOne($id);
+        return $this->render('back',[
+            'message' => $message,
+            'id' => $id,
+        ]);
+    }
+
+    /*
+     * 发送回帖
+     */
+    public function actionSend(){
+        $submessage = new Submessage();
+        $submessage->id = Common::generateID();
+        $submessage->parentId = Yii::$app->request->post('id');
+        $submessage->username = Yii::$app->request->post('username');
+        $submessage->content = Yii::$app->request->post('content');
+        $submessage->createDateTime = Yii::$app->request->post('createDateTime');
+        if ($submessage->save()){
+            return 'success';
+        }else{
+            return 'fail';
+        }
+    }
+
+    /*
+     * 单个删除
+     */
+    public function actionDelete(){
+        $id = Yii::$app->request->post("id");
+        $message = Message::findOne($id);
+        if($message->delete()){
+            return "success";
+        }else{
+            return "fail";
+        }
+    }
+
+    /*
+     * 多选删除
+     */
+    public function actionDeleteall()
+    {
+        $ids = Yii::$app->request->post("ids");
+        $ids_array = explode('-',$ids);
+        foreach($ids_array as $key => $data){
+            Message::deleteAll('id = :id',[':id'=>$data]);
+        }
+        return 'success';
+    }
+
+}

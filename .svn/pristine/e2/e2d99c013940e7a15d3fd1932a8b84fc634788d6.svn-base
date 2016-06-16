@@ -1,0 +1,245 @@
+<?php
+
+namespace app\controllers;
+use app\models\Dict;
+use app\models\Dictitem;
+use yii\helpers\Json;
+use Yii;
+use yii\data\Pagination;
+use app\common\Common;
+class DictController extends \yii\web\Controller
+{
+    public $layout = false;
+    public $enableCsrfValidation = false;
+    public $dicts;
+    public $dict;
+    public $dictitems;
+    /*
+     * 跳转到列表页主页
+     */
+    public function actionList()
+    {
+        return $this->render('list');
+    }
+
+    /*
+     * 获取添加字典页面
+     */
+    public function actionAdd(){
+        return $this->render('add');
+    }
+
+    /*
+     * 根据字典id查询所添加的字典标识是否重复
+     */
+    public function actionFindid(){
+        //$this->dict = Dict::findOne(Yii::$app->request->get('dictCode'));
+        if(is_null(Dict::findOne(Yii::$app->request->get('dictCode')))){
+            return '';
+        }else{
+            return 'exist';
+        }
+    }
+
+    /*
+     * 保存添加的字典以及字典项
+     */
+    public function actionSave(){
+        $dict = new Dict();
+        $dict->dictCode = Yii::$app->request->post('dictCode');
+        $dict->dictName = Yii::$app->request->post('dictName');
+        $dict->intro = Yii::$app->request->post('intro');
+        $dict->state = '1';
+        $dict->save();
+        $dictItemOrders = Yii::$app->request->post('dictItemOrders');
+        if(is_null($dictItemOrders)){
+            return;
+        }else{
+            $dictItemCodes = Yii::$app->request->post('dictItemCodes');
+            $dictItemValues = Yii::$app->request->post('dictItemValues');
+            $dictItemOrders_arry = explode('-',$dictItemOrders);
+            $dictItemCodes_arry = explode('-',$dictItemCodes);
+            $dictItemValues_arry = explode('-',$dictItemValues);
+
+            foreach($dictItemOrders_arry as $key=>$data)
+            {
+                $dictitem = new Dictitem();
+                $dictitem->id = Common::generateID();
+                $dictitem->dictCode = $dict->dictCode;
+                $dictitem->state = '1';
+                $dictitem->dictItemCode = $dictItemCodes_arry[$key];
+                $dictitem->dictItemName = $dictItemValues_arry[$key];
+                $dictitem->orderBy = intval($data);
+                $dictitem->save();
+            }
+        }
+        return 'success';
+    }
+
+    /*
+     * 根据字典名称获取字典项集
+     */
+    public function actionListdict(){
+        $this->dictitems = Dictitem::find()
+            ->where([
+                'state' => '1',
+                'dictCode' => Yii::$app->request->post('dictCode'),
+            ])
+            ->orderBy('orderBy')
+            ->all();
+        return Json::encode($this->dictitems);
+    }
+
+    /*
+     * 获取一个字典以及其字典项
+     */
+    public function actionGetdictdetail(){
+        $dictCode = Yii::$app->request->get('dictCode');
+        $dict = Dict::findOne($dictCode);
+        $dictItems = Dictitem::find()
+            ->where(['dictCode' => $dictCode])
+            ->all();
+        //以下是现实对模型中的字典项进行转化
+        $dictItem = Dictitem::find()
+            ->where(['dictCode' => 'DICT_STATE'])
+            ->all();
+        foreach($dictItem as $index=>$value){
+            if($dict->state == $value->dictItemCode){
+                $dict->state = $value->dictItemName;
+            }
+        }
+        //到此处截止
+        return $this->render('detail',[
+            'dict' => $dict,
+            'dictItems' => $dictItems,
+        ]);
+    }
+
+    /*
+     * 跳转到修改页面
+     */
+    public function actionEdit(){
+        $dictCode = Yii::$app->request->get('dictCode');
+        $dict = Dict::findOne($dictCode);
+        $dictItems = Dictitem::find()
+            ->where(['dictCode' => $dictCode])
+            ->all();
+        return $this->render('update',[
+            'dict' => $dict,
+            'dictItems' => $dictItems,
+        ]);
+    }
+
+    /*
+     * 保存修改后的字典以及字典项
+     */
+    public function actionUpdate(){
+        $dictCode = Yii::$app->request->post('dictCode');
+        $dict = Dict::findOne($dictCode);
+        $dict->dictName = Yii::$app->request->post('dictName');
+        $dict->intro = Yii::$app->request->post('intro');
+        $dict->state = Yii::$app->request->post('state');
+        $dict->save();
+        $dictItemOrders = Yii::$app->request->post('dictItemOrders');
+        if(is_null($dictItemOrders)){
+            return;
+        }else{
+            $dictItemCodes = Yii::$app->request->post('dictItemCodes');
+            $dictItemValues = Yii::$app->request->post('dictItemValues');
+            $dictItemIds = Yii::$app->request->post('dictItemIds');
+            $dictItemOrders_arry = explode('-',$dictItemOrders);
+            $dictItemCodes_arry = explode('-',$dictItemCodes);
+            $dictItemValues_arry = explode('-',$dictItemValues);
+            $dictItemIds_arry = explode('-',$dictItemIds);
+            foreach($dictItemOrders_arry as $key=>$data)
+            {
+                $dictitem = new Dictitem();
+                if($dictItemIds_arry[$key] == '1'){
+                    $dictitem->id = Common::generateID();
+                }else{
+                    $dictitem = Dictitem::findOne($dictItemIds_arry[$key]);
+                }
+
+                $dictitem->dictCode = $dictCode;
+                $dictitem->state = '1';
+                $dictitem->dictItemCode = $dictItemCodes_arry[$key];
+                $dictitem->dictItemName = $dictItemValues_arry[$key];
+                $dictitem->orderBy = intval($data);
+                $dictitem->save();
+            }
+        }
+        return 'success';
+    }
+
+    /*
+     * 根据字典项id删除字典项
+     */
+    public function actionDelete(){
+        if(Dictitem::findOne(YII::$app->request->post('id'))->delete()){
+            return "success";
+        }else{
+            return "fail";
+        }
+    }
+
+    /*
+     *根据字典id删除字典以及字典项
+     */
+    public function actionDeldict(){
+        $dictCode = YII::$app->request->post('dictCode');
+        Dict::findOne($dictCode)->delete();
+        Dictitem::deleteAll('dictCode = :dictCode',[':dictCode'=>$dictCode]);
+        return 'success';
+    }
+
+    /*
+     *根据删除多个字典以及字典项
+     */
+    public function actionDelalldict(){
+        $dictCodes = YII::$app->request->post('ids');
+        $dictCodes_arry = explode('-',$dictCodes);
+        foreach($dictCodes_arry as $key=>$data){
+            Dictitem::deleteAll('dictCode = :dictCode',[':dictCode'=>$data]);
+            Dict::findOne($data)->delete();
+        }
+        return 'success';
+    }
+
+    /*
+     * 根据查询条件查询字典列表
+     */
+    public function actionListall(){
+        $dictName = YII::$app->request->get('dictName');
+        $state = YII::$app->request->get('state');
+        $para=array();
+        $para['dictName'] = $dictName;
+        $para['state'] = $state;
+        $whereStr = "1=1";
+        if($state != ''){
+            $whereStr = $whereStr." and state=".$state;
+        }
+        if($dictName != ''){
+            $whereStr = $whereStr." and dictName like '%".$dictName."%'";
+        }
+        $data = Dict::find()->where($whereStr);
+        $pages = new Pagination(['totalCount' =>$data->count(), 'pageSize' => Common::PAGESIZE]);
+        $model = $data->offset($pages->offset)->limit($pages->limit)->all();
+        //以下是现实对模型中的字典项进行转化
+        $dictItem = Dictitem::find()
+            ->where(['dictCode' => 'DICT_STATE'])
+            ->all();
+        foreach($model as $key=>$data){
+            foreach($dictItem as $index=>$value){
+                if($data->state == $value->dictItemCode){
+                    $model[$key]->state = $value->dictItemName;
+                }
+            }
+        }
+        //到此处截止
+        return $this->render('listall',[
+            'dicts' => $model,
+            'pages' => $pages,
+            'para' => $para,
+        ]);
+    }
+}

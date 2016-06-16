@@ -1,0 +1,56 @@
+/**
+ * Created by MacheNike on 2016/4/9.
+ */
+$(document).ready(function(){
+    /*数量加减*/
+    $(".add").click(function() {
+        var n=$(this).prev().val();
+        var num=parseInt(n)+1;
+        if(num==0){ return;}
+        $(this).prev().val(num);
+    });
+    $(".reduce").click(function(){
+        var n=$(this).next().val();
+        var num=parseInt(n)-1;
+        if(num==0){ return}
+        $(this).next().val(num);
+    });
+});
+
+function openedit(id) {
+    var num = parseInt($(".num").val());
+    var userStr = "";
+    userStr += "id=" + id;
+    $.ajax({
+        url: shopcartUrl,
+        type: "post",
+        dataType: "text",
+        data: userStr,
+        async: "false",
+    });
+    window.parent.location.href = purchaseUrl + '&productId='+id +'&buynum=' + num;
+}
+
+//加入购物车
+function shopcart(id) {
+    var userStr = "";
+    userStr += "id=" + id;
+    $.ajax({
+        url: shopcartUrl,
+        type: "post",
+        dataType: "text",
+        data: userStr,
+        async: "false",
+        success: function (data) {
+            if (data == "success") {
+                alert('加入成功');
+            } else {
+                alert('加入失败');
+            }
+
+        },
+        error: function (data) {
+            alert('加入失败');
+        }
+    });
+}

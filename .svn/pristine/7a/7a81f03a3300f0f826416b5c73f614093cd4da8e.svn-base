@@ -1,0 +1,25 @@
+//提交联系我们
+function send(){
+		var paraStr = "";
+		paraStr += "name=" + $("#name").val();
+		paraStr += "&mobilephone=" + $("#mobilephone").val();
+		paraStr += "&content=" + $("#content").val();
+		$.ajax({
+			url: saveUrl,
+			type: "post",
+			dataType: "text",
+			data: paraStr,
+			async: "false",
+			success: function (data) {
+				if (data == "success") {
+					alert('提交成功！');
+				} else {
+					alert('提交失败！');
+				}
+
+			},
+			error: function (data) {
+				alert('提交失败！');
+			}
+		});
+}

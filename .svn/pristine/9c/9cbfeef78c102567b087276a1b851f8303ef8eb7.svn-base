@@ -1,0 +1,32 @@
+/**
+ * Created by MacheNike on 2016/4/9.
+ */
+$(document).ready(function(){
+    $(".m_tip").click(function(){
+        var num=parseInt($("#count").text());
+        num++;
+        if(num>=1){
+            $("#count").css("display","block");
+        }else{
+            $("#count").css("display","none");
+        }
+        $("#count").text(num);
+    })
+    /*数量加减*/
+    $(".add").click(function() {
+        var n=$(this).prev().val();
+        var num=parseInt(n)+1;
+        if(num==0){ return;}
+        $(this).prev().val(num);
+    });
+    $(".reduce").click(function(){
+        var n=$(this).next().val();
+        var num=parseInt(n)-1;
+        if(num==0){ return}
+        $(this).next().val(num);
+    });
+});
+
+function openedit(id) {
+    window.parent.location.href = shopcartUrl + '&productId='+id;
+}

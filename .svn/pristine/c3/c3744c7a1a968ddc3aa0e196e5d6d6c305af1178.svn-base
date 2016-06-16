@@ -1,0 +1,33 @@
+
+$(function () {
+    var state = false;
+    $('#txtEmail').focus(function () {
+        if (state == false) {
+            $(this).val('');
+        }
+    })
+    $('#txtEmail').blur(function () {
+        if ($(this).val() == '') {
+            $('#spinfo').text('邮箱不能为空');
+            $(this).focus();
+        }
+        else {
+            if (/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test($(this).val()) == false) {
+                $('#spinfo').text('邮箱格式不正确，请重新输入');
+                $(this).focus();
+            }
+            else {
+                //$('#spinfo').text('邮箱格式正确，继续输入');
+                $('#spinfo').text('');
+                $('#spinfo').append('');
+                state = true;
+            }
+        }
+    })
+})
+$(function () {
+    <!--发送密码显示文字-->
+    $('#button').click(function () {
+        $('.notice').show();
+    })
+})

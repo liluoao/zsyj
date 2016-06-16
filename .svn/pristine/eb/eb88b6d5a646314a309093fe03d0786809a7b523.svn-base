@@ -1,0 +1,54 @@
+
+$(document).ready(function(){
+    check_r();
+
+})
+function check_r(){
+    $.formValidator.initConfig({
+    formid:"myform",
+    autotip:true,			//是否显示提示信息
+    onerror:function(msg,obj){
+    window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})
+    }});
+    // 校验模型名称
+
+
+    //验证电话号码*/
+    $("#mobilephone").formValidator({
+            onshow:"请输入联系电话！",
+            onfocus:"请输入联系电话！"})
+        .inputValidator({               //校验不能为空
+            min:1,
+            onerror:"请输入联系电话！"})
+        .regexValidator({
+            regexp:"mobile",
+            datatype:"enum",
+            param:'i',
+            onerror:"联系电话填写不对！"})
+}
+
+
+function save(){
+        var paraStr = "";
+        paraStr +="id="+$("#id").val();
+        paraStr +="&mobilephone="+$("#mobilephone").val();
+        paraStr +="&email="+$("#email").val();
+        paraStr +="&sex="+$("input[name='sex']:checked").val();
+        paraStr +="&postcode="+$("#postcode").val();
+        paraStr +="&detailAddress="+$("#detailAddress").val();
+        $.ajax({
+            url: updateUrl,
+            type: "post",
+            dataType: "text",
+            data:paraStr ,
+            async: "false",
+            success: function (data) {
+                alert('修改成功！');
+                window.parent.location.href= personaldataUrl;
+            },
+            error:function(data){
+                alert('修改失败！');
+            }
+        });
+
+    }

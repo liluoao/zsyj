@@ -1,0 +1,36 @@
+/**
+ * Created by Administrator on 2016/4/2.
+ */
+$(document).ready(function(){
+    $(".buy_car").click(function(){
+        var productId = $(this).val();
+        var num=parseInt($('#'+productId).text());
+
+        if(num>=1){
+            $("#count").css("display","block");
+        }else{
+            $("#count").css("display","none");
+        }
+        $("#count").text(num);
+    });
+    //数量加减
+    $(".plus").click(function(){
+        var productId = $(this).val();
+        var n=$('#'+productId).val();
+        var num=parseInt(n)+1;
+        $('#'+productId).val(num);
+    })
+    $('.minus').click(function(){
+        var productId = $(this).val();
+        var n=$('#'+productId).val();
+        var num=parseInt(n)-1;
+        if(num=='0')return;
+        $('#'+productId).val(num);
+    })
+
+
+})
+//打开修改页面
+function openedit(id) {
+    window.parent.location.href = tailafterUrl + '&id='+id;
+}

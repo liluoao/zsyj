@@ -1,0 +1,359 @@
+<?php
+
+    namespace app\controllers;
+
+    use app\models\Role;
+    use app\models\RoleMenu;
+    use Yii;
+    use yii\filters\AccessControl;
+    use yii\web\Controller;
+    use yii\filters\VerbFilter;
+    use app\models\BackendMenu;
+    use yii\helpers\Json;
+    use app\common\Common;
+    use app\models\Dictitem;
+    use app\models\User;
+    use yii\data\Pagination;
+
+    class RoleController extends Controller
+    {
+        public $layout = false; //设置使用的布局文件
+        public $enableCsrfValidation = false;
+
+        public function actionList()
+        {
+            return $this->render('list');
+        }
+
+        public function actionAdd()
+        {
+            return $this->render('add');
+        }
+        /*
+         * 添加角色
+         *
+         *
+         * */
+        public function actionInsert()
+        {
+            $role = new Role();
+            $role->id = Common::generateID();
+            $role->name = Yii::$app->request->post('name');
+            $role->state = '1';
+            if($role->save()){
+                return "success";
+            }else{
+                return "fail";
+            }
+        }
+        /*
+         * 检查重名
+         *
+         * */
+        public function actionCheckname()
+        {
+            $name = Yii::$app->request->get('name');
+            $role = Role::find()->where(['name' => $name])->all();
+            if(sizeof($role) == 0){
+                return "success";
+            }else{
+                return "exist";
+            }
+        }
+            /*
+             *
+             * 详情页
+             *
+             * */
+        public function actionListall()
+        {
+            $roles =Role::find()->all();
+            $dictItem = Dictitem::find()
+                ->where(['dictCode' => 'DICT_STATE'])
+                ->all();
+            foreach($roles as $key=>$data) {
+                foreach ($dictItem as $index => $value) {
+                    if ($data->state == $value->dictItemCode) {
+                        $roles[$key]->state = $value->dictItemName;
+                    }
+                }
+            }
+            return $this->render('listall',[
+                'roles' => $roles,
+            ]);
+
+
+        }
+        /*
+		 *
+		 * 用户详情
+		 *
+		 *
+		 * */
+        public function actionDetail()
+        {
+            $id = Yii::$app->request->get('id');
+            $role =Role::findOne($id);
+            return $this->render('detail',[
+                'role'=>$role,
+            ]);
+        }
+        /*
+         *
+         * 修改
+         *
+         *
+         * */
+        public function actionEdit()
+        {
+            $id = Yii::$app->request->get('id');
+            $role = Role::findOne($id);
+            $statedict = Dictitem::find()->where(['dictCode' => 'DICT_STATE'])->all();
+            return $this->render('edit',[
+                'role' => $role,
+                'statedict' => $statedict,
+
+            ]);
+        }
+
+        public function actionUpdate()
+        {
+            $id = Yii::$app->request->post('id');
+            $role =Role::findOne($id);
+            $role->name = Yii::$app->request->post('name');
+            $role->state = Yii::$app->request->post('state');
+            if ($role->save()){
+                return 'success';
+            }else{
+                return 'fail';
+            }
+        }
+
+        /*
+		 * 删除一个角色
+		 *
+		 * */
+        public function actionDelete()
+        {
+            $id = Yii::$app->request->post("id");
+            $role =Role::findOne($id);
+            if($role->delete()){
+                return "success";
+            }else{
+                return "fail";
+            }
+        }
+        /*
+		* 删除多个角色
+		*/
+        public function actionDeleteall()
+        {
+            $id = Yii::$app->request->post("id");
+            $id_array = explode('-',$id);
+            foreach($id_array as $key => $data){
+                Role::deleteAll('id = :id',[':id'=>$data]);
+            }
+            return 'success';
+        }
+
+        /*
+		 * 输出已被赋予角色的用户
+		 */
+        public function actionRoleadd()
+        {
+            $id = Yii::$app->request->get('id');
+            $name = Yii::$app->request->get('name');
+            $role = Role::findOne($id);
+            $users = User::find()
+                ->where("roleId = :id",[':id' => $id]);
+            $pages = new Pagination(['totalCount' =>$users->count(), 'pageSize' => Common::PAGESIZE]);
+            $models = $users->offset($pages->offset)->limit($pages->limit)->all();
+            $dictItem = Dictitem::find()
+                ->where(['dictCode' => 'DICT_STATE'])
+                ->all();
+            $dictItemS = Dictitem::find()
+                ->where(['dictCode' => 'DICT_SEX'])
+                ->all();
+            foreach($models as $key=>$data) {
+                foreach ($dictItem as $index => $value) {
+                    if ($data->userState == $value->dictItemCode) {
+                        $models[$key]->userState = $value->dictItemName;
+                    }
+                }
+                foreach($dictItemS as $index=>$value){
+                    if($data->sex == $value->dictItemCode){
+                        $models[$key]->sex = $value->dictItemName;
+                    }
+                }
+            }
+            return $this->render('roleadd',[
+                'users' => $models,
+                'pages' => $pages,
+                'role'=>$role,
+                'roleId' => $id,
+                'name' => $name,
+            ]);
+        }
+        /*
+         *
+         * 被赋予角色的用户的详情页
+         *
+         *
+         * */
+        public function actionRoleaddlistall()
+        {
+            $id = Yii::$app->request->get('id');
+            $name = Yii::$app->request->get('name');
+            $users = User::find()
+                ->where('roleId != :roleId or roleId is null',[":roleId" => $id]);
+            $pages = new Pagination(['totalCount' =>$users->count(), 'pageSize' => Common::PAGESIZE]);
+            $model = $users->offset($pages->offset)->limit($pages->limit)
+                ->all();
+
+            $pages = new Pagination(['totalCount' =>$users->count(), 'pageSize' => Common::PAGESIZE]);
+            $dictItem = Dictitem::find()
+                ->where(['dictCode' => 'DICT_STATE'])
+                ->all();
+            $dictItemS = Dictitem::find()
+                ->where(['dictCode' => 'DICT_SEX'])
+                ->all();
+            foreach($model as $key=>$data) {
+                foreach ($dictItem as $index => $value) {
+                    if ($data->userState == $value->dictItemCode) {
+                        $model[$key]->userState = $value->dictItemName;
+                    }
+                }
+                foreach($dictItemS as $index=>$value){
+                    if($data->sex == $value->dictItemCode){
+                        $model[$key]->sex = $value->dictItemName;
+                    }
+                }
+            }
+            return $this->render('roleaddlistall',[
+                'users' => $model,
+                'name' => $name,
+                'roleId' => $id,
+                'pages' => $pages,
+            ]);
+        }
+
+        /*
+		* 赋予用户角色
+		*/
+        public function actionRoleinset()
+        {
+            $ids = Yii::$app->request->post("ids");
+            $roleId = Yii::$app->request->post('roleId');
+            $ids_array = explode('-',$ids);
+            foreach($ids_array as $key => $data){
+                $user = User::findOne($data);
+                $user->roleId = $roleId;
+                $user->save();
+            }
+            if($user->save()){
+                return 'success';
+            }else{
+                return 'fail';
+            }
+        }
+/*
+ * 删除一个用户角色
+ *
+ *
+ * */
+        public function actionRdelete()
+        {
+            $id = Yii::$app->request->post("id");
+            $user = User::findOne($id);
+            $user->roleId = "";
+            if($user->save()){
+                return "success";
+            }else{
+                return "fail";
+            }
+        }
+
+        /*
+		 * 删除多个用户角色
+		 */
+        public function actionRdeleteall()
+        {
+            $ids = Yii::$app->request->post("ids");
+            $ids_array = explode('-',$ids);
+            foreach($ids_array as $key => $data){
+                $user=User::findOne($data);
+                $user->roleId="";
+                $user->save();
+
+            }
+            if($user->save()){
+                return 'success';
+            }else{
+                return 'fail';
+            }
+        }
+
+        /*
+		 *
+		 *  为角色添加菜单
+		 */
+        public function actionAddr()
+        {
+            $id = Yii::$app->request->get('id');
+            $role = Role::findOne($id);//找出需要增加菜单的角色
+
+            if(Rolemenu::find()->where('roleId = :id',[':id'=>$id])->all())
+            {
+                $rolemenus = Rolemenu::find()
+                    ->where('roleId = :id',[':id'=>$id])
+                    ->all();
+                $menuIds ='';
+                foreach($rolemenus as $key => $data){
+                    $menuId = $data->menuId;
+                    $menuIds .= ','.$menuId;
+                }
+            }else{
+                $menuIds ='';
+            }
+
+            //以下为需要传到视图的变量
+            $rolename = $role->name;
+
+            //列出可用菜单
+            $backendMenus = BackendMenu::find()
+                ->where("state = '1' ")
+                ->all();
+
+            return $this->render('addr',[
+                'rolename' => $rolename,
+                'roleId' => $id,
+                'backendMenus' => $backendMenus,
+                'menuIds' => $menuIds,
+            ]);
+        }
+
+        /*
+		 *
+		 *  为角色保存有权的菜单
+		 */
+        public function actionSendmenu()
+        {
+            $ids = Yii::$app->request->get('ids');
+            $roleId = Yii::$app->request->get('roleId');
+            $ids_array = explode(',',$ids);
+            foreach($ids_array as $key => $data)
+            {
+                if(!(Rolemenu::find()
+                    ->where('menuId = :menuId and roleId = :roleId',[":menuId" =>$data,":roleId"=>$roleId])
+                    ->all()))
+                {
+                    $rolemenu = new RoleMenu();//新建关系
+                    $rolemenu->id = Common::generateID();//生成ID
+                    $rolemenu->roleId = $roleId;
+                    $rolemenu->menuId = $data;
+                    $rolemenu->save();
+                }
+            }
+            return $this->render('list');
+        }
+    }

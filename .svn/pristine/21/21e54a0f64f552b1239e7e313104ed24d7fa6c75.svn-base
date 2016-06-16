@@ -1,0 +1,27 @@
+.box1{width:100%;min-width:1000px;height:auto;margin:0 auto;margin-top:20px;}
+.box{width:1000px;height:640px;margin:0 auto;}
+.my_left1{width:410px;height:615px;float:left;}
+.my_right{width:376px;height:207px;float:right;margin-right:60px;}
+.my_text{background:url(../../images/home/images_my/my_text.png);width:492px;height:360px;float:right;margin-top:55px;}
+.us{font-size:30px;color:#996699;font-weight:100;font-family:"微软雅黑";position:relative;top:265px;left:160px;}
+.text{width:370px;height:280px;position:relative;top:270px;left:570px;}
+.text p{position:absolute;top:10px;left:3px;color:#996699;font-family:"微软雅黑";font-size:18px;text-indent:2em;line-height:1.5;}
+.product{width:1000px;height:640px;margin:0 auto;margin-top:45px;}
+.Technical1_cup{width:185px;height:206px;float:left;margin-left:70px;}
+.Technical2_p{width:185px;height:206px;float:left;margin-left:35px;}
+.right_product{width:331px;height:541px;float:right;}
+.technology{font-size:30px;color:#996699;font-weight:100;font-family:"微软雅黑";position:relative;top:255px;left:-430px;}
+.Technical3_p{width:471px;height:347px;float:left;margin-top:85px;}
+.Technical{width:390px;height:280px;position:relative;top:290px;left:35px;}
+.Technical p{position:relative;top:-580px;left:5px;color:#996699;font-family:"微软雅黑";font-size:18px;text-indent:2em;line-height:1.5;}
+.super{width:1000px;height:740px;margin:0 auto;margin-top:45px;}
+.advantage_right{width:400px;height:594px;float:left;}
+.advantage_left{width:184px;height:207px;float:left;margin-left:125px;}
+.advantage_left2{width:184px;height:207px;float:left;margin-left:45px;}
+.youshi{font-size:30px;color:#996699;font-weight:100;font-family:"微软雅黑";position:relative;top:20px;left:130px;float:left;}
+.my_text2{width:474px;height:353px;float:right;margin-top:60px;}
+.chanpin{width:390px;height:280px;position:relative;top:310px;left:570px;}
+.one{position:absolute;top:-5px;left:5px;color:#996699;font-family:"微软雅黑";font-size:18px;text-indent:2em;line-height:1.4;}
+.two{position:absolute;top:95px;left:5px;color:#996699;font-family:"微软雅黑";font-size:18px;text-indent:2em;line-height:1.4;}
+.three{position:absolute;top:143px;left:5px;color:#996699;font-family:"微软雅黑";font-size:18px;text-indent:2em;line-height:1.4;}
+

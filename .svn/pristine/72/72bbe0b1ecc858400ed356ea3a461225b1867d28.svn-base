@@ -1,0 +1,13 @@
+.content{height:auto;min-width:1000px;background-color:#f8f8f8;padding-top:83px;}
+.center{width:1000px;height:500px;background-color:#FFF;margin:auto;padding-top:10px;}
+p.title{display:block;width:800px;height:43px;border-bottom:1px solid #ccc;font-family:"微软雅黑";font-size:16px;color:#cc33ff;line-height:43px;margin:auto;}
+form{width:400px;height:336px;margin:113px auto;}
+.pic{width:250px;height:40px;border:1px solid #ccc;}
+input#txtEmail{width:210px;height:40px;font-family:"微软雅黑";font-size:14px;line-height:40px;margin-top:0px;outline:none;border:none;}
+#spinfo{width:200px;height:20px;font-family:"微软雅黑";font-size:14px;color:#F00;position:absolute;top:365px;left:490px;}
+.down{width:400px;height:50px;margin-top:45px;}
+input.ma{width:200px;height:40px;border:1px solid #ccc;font-family:"微软雅黑";font-size:14px;outline:none;float:left;}
+.down a{display:block;width:90px;height:50px;font-family:"微软雅黑";font-size:10px;color:#3399cc;text-decoration:none;line-height:50px;float:right;}
+p.notice{font-family:"微软雅黑";font-size:14px;color:#ccc;float:left;margin-top:15px;display:none;}
+#button{display:block;width:300px;height:40px;background-color:#cc33cc;margin:75px auto;text-decoration:none;font-family:"微软雅黑";font-size:14px;color:#fff;text-align:center;line-height:40px;letter-spacing:3px;border-radius:6px;}
+#button:hover{background-color:#ff33ff;}

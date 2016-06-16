@@ -1,0 +1,54 @@
+*{margin:0;padding:0;border:0;}
+.wraper{width:100%;height:auto;margin:0 auto;}
+a{ text-decoration:none;}	
+ul{list-style:none;}
+li{list-style:none;}
+img{ border:0; vertical-align:bottom;margin:0;padding:0;}
+br{height:10px;}
+
+/*body*/
+.big{width:1200px;margin:0 auto;margin-bottom:120px;}
+.content{height:2130px;margin:0 auto;background:#eeeeee;min-width:1300px;width:100%;margin-bottom:90px;}
+.all_commodity{font-family:"Microsoft YaHei UI";color:#666666;font-size:25px;width:1210px;height:120px;margin:0 auto 0 auto;}
+.all_commodity a{line-height:120px;}
+.all_commodity_line{width:1210px;height:0;border-top:solid 1px #999999;margin:0 auto;margin-top:-43px; }
+.commodity_first{width:1100px;height:340px;margin:0 auto;margin-top:45px;background:#ffffff;}
+.commodity_first_small{width:1060px;height:300px;margin:0 auto;padding-top:20px;}
+.commodity_first_small_img{width:320px;height:300px;float:left;}
+.commodity_first_small li{float:left;}
+.commodity_first_small_middle{margin-left:40px;width:211px;height:300px;float:left;}
+.commodity_first_small_middle p{font-size:26px;font-family:'黑体';}
+.Promotion{margin-top:30px;font-family:'微软雅黑';height:30px;}
+.Promotion_price{font-size:16px;height:30px;line-height:30px;}
+.price{font-size:22px;color:#ff0000;margin-left:24px; }
+.Present_price{font-size:16px;color:#a7a7a7;margin-left:24px;height:30px;line-height:30px;}
+.Promotion_middle{height:30px;font-family:'微软雅黑';}
+.Specifications{font-size:16px;height:30px;line-height:30px;letter-spacing:13px;}
+.bottle{font-size:16px;height:30px;line-height:30px;margin-left:18px;}
+.Promotion_last{height:30px;font-family:'微软雅黑';}
+.number{margin-top:30px;height:30px;}
+.number_li{font-family:'微软雅黑';font-size:16px;letter-spacing:13px;}
+.number_plus{margin-left:18px;}
+.buy_buycar{margin-top:33px;}
+.buy_rightnow {background:url(../images/images_mall/buy.png);width:94px;height:34px;}
+.buy_rightnow:hover{background:url(../images/images_mall/buy_after.png);}
+.buy_car{background:url(../images/images_mall/shoppingcart.png);width:94px;height:34px;margin-left:20px;cursor:pointer;}
+.buy_car:hover{background:url(../images/images_mall/shoppingcart__after.png);}
+.commodity_first_small_right{float:right;}
+
+/*侧悬浮*/
+.right{position:fixed;width:60px;height:200px;right:54px;top:65%;z-index:100;}
+.right ul li{width:50px;height:50px;float:left;position:relative;margin-top:5px;list-style-type:none;}
+.right ul li .sidebox1{background:url(../images/right_suspend/icon_TO_top_after.png);position:absolute;width:50px;height:50px;top:0;right:0;transition:all 0.3s;overflow:hidden;}
+.right ul li .sidebox2{background:url(../images/right_suspend/icon_shop_after.png);position:absolute;width:50px;height:50px;top:0;right:0;transition:all 0.3s;overflow:hidden;}
+.right ul li .sidebox3{background:url(../images/right_suspend/icon_share_after.png);position:absolute;width:50px;height:50px;top:0;right:0;transition:all 0.3s;overflow:hidden;}
+.right ul li .sidebox1:hover{background:url(../images/right_suspend/icon_TO_top.png)}
+.right ul li .sidebox2:hover{background:url(../images/right_suspend/icon_shop.png)}
+.right ul li .sidebox3:hover{background:url(../images/right_suspend/icon_share.png)}
+
+/*数量加减*/
+.num{width:45px;text-align:center;}
+.num1{width:45px;text-align:center;}
+.num2{width:45px;text-align:center;}
+.num3{width:45px;text-align:center;}
+.num4{width:45px;text-align:center;}

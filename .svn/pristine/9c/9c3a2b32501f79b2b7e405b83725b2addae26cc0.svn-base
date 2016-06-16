@@ -1,0 +1,60 @@
+*{margin:0;border:0;padding:0;}
+input:focus {outline:solid 1px #3CF;}
+input{background:#FFF;}
+ul{list-style:none;}
+a{text-align:none;}
+a{text-decoration:none;outline:none;}
+a,img{border:0;}
+@font-face{ font-family:"微软雅黑";  src:url(../work6/font/%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91Light_1.0.ttc);}
+/*wrapper*/
+.wrapper{width:auto;height:auto;margin:0 auto;}
+img{ vertical-align:bottom;}
+/*header*/	
+#header{width:100%;height:auto;margin:0 auto;min-width:1300px;}
+.header_nav{ height:58px; background-color:#fff; border-bottom:1px solid #dfdfe3; padding-top:10px; font-family:'黑体';margin:0 auto;}
+.logo{float:left;margin-left:2%;}
+.nav{float:left;font-weight:900;}
+.nav ul{ padding-left:50px;}
+.nav ul li{ float:left; display:inline; margin-right:33px; line-height:50px; height:50px; padding-top:7px;}
+.nav ul li a{ color:#2d2b2b; font-size:14px; display:inline-block; white-space:nowrap;}
+.nav ul li a:hover{ border-bottom:1px solid #cc00cc; color:#cc00cc;}
+.nav ul li a.on {border-bottom: 1px solid #cc00cc;color: #cc00cc;}
+.header_login{width:500px;height:58px;float:right;}
+.header_login a{color:#cc66cc;font-family:'微软雅黑';font-size:14px;}
+.people_login1{ color:#2d2b2b;line-height:61px;margin:0 5px;}
+.people_login1:hover{ text-decoration:underline;}
+.company_login1{width:160px; height:42px;   text-align:center; border-radius:5px;float:right;margin-right:50px;background:url(../images/images_Home/car_buy.jpg);}
+.company_login1 a{color:#fff;line-height:42px;text-align:center;}
+.company_login1:hover{background:url(../images/images_Home/car_buyhover.jpg);}
+/*content*/
+
+
+.order_details{width:808px;height:440px;background:#fff;float:right;margin-top:25px;}
+.modify{width:808px;height:65px;border-bottom:#ccc 2px solid;}
+.modify span{font-size:18px;font-weight:500;font-family:"微软雅黑";line-height:65px;margin-left:50px;}
+.pass{width:370px;height:265px;margin:0 auto;margin-top:45px;}
+.password_1{width:100px;height:200px;float:left;}
+.pass1{font-size:14px;font-weight:400;font-family:"微软雅黑";float:left;letter-spacing:10px;margin-top:10px;}
+.aside_1{border:#999 1px solid;width:190px;height:30px;float:right;margin-right:50px;margin-top:5px;}
+.aside_2{border:#999 1px solid;width:190px;height:30px;float:right;margin-right:50px;margin-top:20px;}
+.pass2{font-size:14px;font-weight:400;font-family:"微软雅黑";float:left;letter-spacing:10px;margin-top:30px;}
+.pass3{font-size:14px;font-weight:400;font-family:"微软雅黑";float:left;letter-spacing:4px;margin-top:30px;}
+.aside_3{border:#999 1px solid;width:100px;height:30px;float:left;margin-left:8px;margin-top:20px;}
+.form{width:250px;height:200px;float:left;}
+.verify{width:80px;height:32px;float:left;margin-left:228px;margin-top:-40px;}
+.change{font-size:10px;font-weight:200;font-family:"微软雅黑";float:left;margin-left:310px;margin-top:-30px;color:#66CCCC;}
+.submit{width:70px;height:30px;background:#cc33cc;margin-left:180px;margin-top:30px;-moz-border-radius: 5px; /* Gecko browsers */ -webkit-border-radius: 5px;   /* Webkit browsers */border-radius:5px;    /* W3C syntax */}
+.submit a{color:#FFF;}
+.submit:hover{background:#ff33ff;}
+
+
+/*效果*/
+
+.cuo{display:none;font-size:10px;font-family:"宋体";float:left;color:#F6C;margin-top:-215px;margin-left:-70px;}
+.mima{display:none;font-size:10px;font-family:"宋体";float:left;color:#F6C;margin-top:-160px;margin-left:-70px;}
+.geshi{display:none;font-size:10px;font-family:"宋体";float:left;color:#F6C;margin-top:-160px;margin-left:-70px;}
+.shu{display:none;font-size:10px;font-family:"宋体";float:left;color:#F6C;margin-top:-110px;margin-left:-70px;}
+.yanzhenma{display:none;font-size:10px;font-family:"宋体";float:left;color:#F6C;margin-top:-60px;margin-left:-70px;}
+
+
+

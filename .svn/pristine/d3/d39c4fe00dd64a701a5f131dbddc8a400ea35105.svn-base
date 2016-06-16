@@ -1,0 +1,10 @@
+#full_1{width:100%;min-width:1200px;height:1265px;background:rgba(0, 0, 0, 0.4);position:absolute;z-index:300;}
+.statement{width:550px;height:600px;min-width:1200px;margin-top:100px;margin-left:6%;}
+.side{width:650px;height:770px;margin:30px auto;background:#eee;border-radius:5px;}
+.side span{position:relative;font:"微软雅黑";font-size:26px;color:#666;top:37px;}
+.outer{width:550px;height:600px;background:#FFF;margin-top:63px;margin-left:auto; margin-right:auto;}
+.home{position:relative;width:540px;height:550px;top:36px;margin:auto;overflow:auto;}
+.home p{font:"微软雅黑";font-size:14px;color:#000;}
+.home pre{white-space:pre-wrap;}
+input .agree{background:#9966cc;width:100px;height:20px;z-index:1;display:inline;margin-top:20px;text-align:center;line-height:20px;}
+#close_1{font-family:"微软雅黑";font-size:12px;width:60px;height:35px;border-radius:8px;background:#999;color:#FFF;font-weight:600;border:none;outline:medium;margin-left:45%;margin-top:20px;}

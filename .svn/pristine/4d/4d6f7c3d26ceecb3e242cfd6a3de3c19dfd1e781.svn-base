@@ -1,0 +1,358 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: liluoao
+ * Date: 2016/4/3
+ * Time: 12:10
+ */
+use yii\helpers\Html;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\Breadcrumbs;
+?>
+
+<?php $this->beginPage() ?>
+<!DOCTYPE html>
+<html lang="<?= Yii::$app->language ?>" xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>紫薯原浆</title>
+	<link rel="stylesheet" type="text/css" href="css/home/zsyj_Purchasepage.css">
+	<link rel="stylesheet" type="text/css" href="css/home/base_login.css">
+
+	<script src="js/home/jquery-1.8.3.min.js"></script>
+	<script  src="js/home/mrdz.js" ></script>
+	<script  src="js/home/cityJson.js" type="text/javascript"></script>
+	<script src="js/home/Popt.js"></script>
+	<script src="js/home/citySet.js"></script>
+	<script>
+		function GetCount() {//已选商品数量
+				var counts=0;Tatols=0;
+				$(".number" ).each(
+					function (index,element) {{
+							counts += parseFloat($(".subtotal").eq(index).text());//总价格计算
+							Tatols = counts+ 15;
+							return;
+						}
+					}
+				);
+				$("#priceTotal").text(counts.toFixed(2));
+				$("#Pricerealy").text(Tatols.toFixed(2));
+			}
+		$(function(){//数量加减
+				var index;
+				$(".plus3").click(function(){//加
+					index = $(".plus3").index(this);
+					$(".num3").eq(index).val(parseInt($(".num3").eq(index).val()) + 1);
+					var totalPrice = parseInt($(".num3").eq(index).val())*parseFloat($(".price").eq(index).text());//小计计算价格
+					$(".subtotal").eq(index).text(totalPrice.toFixed(2));
+
+					GetCount();
+				})
+				$(".minus3").click(function(){ //减
+					index = $(".minus3").index(this);
+					if($(".num3").eq(index).val()<=1){
+							$(".num3").eq(index).val(2);
+						}
+					$(".num3").eq(index).val(parseInt($(".num3").eq(index).val()) - 1);
+					var totalPrice = parseInt($(".num3").eq(index).val())*parseFloat($(".price").eq(index).text());//小计计算价格
+					$(".subtotal").eq(index).text(totalPrice.toFixed(2));
+					GetCount();
+				})
+			})
+	</script>
+
+</head>
+<!--body-->
+<body>
+	<!--header-->
+	<?=$this->render('headerlogin',['column'=>'aboutus'])?>
+
+     <div class="popupall">
+		<div class="Popup">
+			<div class="Popup_top">
+				<a>新增收货地址</a>
+				<a class="shouhuodz"><img src="images/home/images_14_address/Shut down.png" ></a>
+			</div>
+			<ul>
+				<li style="color:#ff3f3f;line-height:30px;">&nbsp;&nbsp;&nbsp;*</li>
+				<li><a>收货人&nbsp;:</a></li>
+				<li><input type="text" id='username_1' name="test" style="border:#efefef 1px solid;width:210px;height:28px;" /></li>
+			</ul>
+			<ul>
+				<li style="color:#ff3f3f;line-height:30px;">*</li>
+				<li><a>所在地区&nbsp;:</a></li>
+				<li><input type="text"  id="city" value="请选择地区" name="test" style="border:#efefef 1px solid;width:210px;height:28px;" /></li>
+			</ul>
+			<div class='header_hide'>
+			<ul >
+				<li style="color:#ff3f3f;line-height:30px;">*</li>
+				<li><a>详细地址&nbsp;:</a></li>
+                <li><input type="text" id='add_address' name="test" style="border:#efefef 1px solid;width:318px;height:28px;" /></li>
+			</ul>
+			<ul >
+				<li style="color:#ff3f3f;line-height:30px;">*</li>
+				<li><a>手机号码&nbsp;:</a></li>
+				<li><input type="text" id="add_tel" name="test" style="border:#efefef 1px solid;width:210px;height:28px;" /></li>
+			</ul>
+			<ul >
+				<li><a>&nbsp;&nbsp;电子邮件&nbsp;:</a></li>
+				<li><input type="text" name="test" style="border:#efefef 1px solid;width:210px;height:28px;" /></li>
+			</ul>
+			<div class="preservation" >
+				<a href="javascript:addAddr();">保存新地址</a>
+			</div>
+			</div>
+		</div>
+	</div>
+<script>
+	function addAddr(){
+		username = $('#username_1').val();
+		citys = $('#city').val();
+		prov = citys.split("-");
+		add_address = $('#add_address').val();
+		add_tel = $('#add_tel').val();
+		var ulArray = new Array();
+		ulArray.push('<ul class="moren">');
+		ulArray.push('<div class="massge_box" >'+username+'&nbsp;'+prov[0]+'</div>');
+		ulArray.push('<li>'+username+'</li>');
+		ulArray.push('<li>'+prov[0]+'</li>');
+		ulArray.push('<li>'+prov[1]+'</li>');
+		ulArray.push('<li>'+prov[2]+'</li>');
+		ulArray.push('<li>'+add_address+'</li>');
+		ulArray.push('<li>'+add_tel+'</li>');
+		ulArray.push('<li class="wei"><div class="moren1" ></div></li>');
+		ulArray.push('<li class="edit" style="color: rgb(153, 102, 153);">修改</li>');
+		ulArray.push('<li class="del" style="color: rgb(153, 102, 153);">删除</li>');
+		ulArray.push('</ul>');
+		$('div.mrdz:last').append(ulArray.join(''));
+		$('.popupall').css('display','none');
+		
+		loadJs();
+		
+		
+	}
+</script>
+
+<style>
+	a{text-decoration:none;}	
+	ul{list-style:none;}
+	.popupal2{width:100%;height:700px;position:fixed;top:0;display:none;font-family:'微软雅黑';filter: alpha(opacity=40);background-color: rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0.4);  z-index:999; }
+	.popupall{width:100%;height:700px;position:fixed;top:0;display:none;font-family:'微软雅黑';filter: alpha(opacity=40);background-color: rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0.4);   z-index:999; }
+	.Popup{width:684px;height:415px;margin:0px auto;border:#e6e0e0 4px solid;background:#fff;margin-top:100px;position: relative; }
+	.Popup_top{width:684px;height:36px;background:#efefef;font-weight:bold;font-size:16px;}
+	.Popup_top a{line-height:36px;margin-left:5px;}
+	.Popup_top img{float:right;margin-right:10px;margin-top:8px;}
+	.Popup ul {margin-top:25px;font-size:14px;width:450px;height:30px;color:#666666;margin-left:48px;}
+	.Popup ul li{float:left;}
+	.Popup ul li a{margin-right:20px;line-height:30px;width:}
+	.preservation{width:100px;height:28px;background:#f2f2f2;border:#ccc 1px solid;margin-top:25px;margin-left:140px;text-align:center;}
+	.preservation a{line-height:28px;color:#666666;font-size:14px;}
+	.preservation a:hover{color:#ff5252;}
+	.preservation1{width:100px;height:28px;background:#f2f2f2;border:#ccc 1px solid;margin-top:25px;margin-left:140px;text-align:center;}
+	.preservation1 a{line-height:28px;color:#666666;font-size:14px;}
+	.preservation1 a:hover{color:#ff5252;}
+
+	* { -ms-word-wrap: break-word; word-wrap: break-word; }
+	html { -webkit-text-size-adjust: none; text-size-adjust: none; }
+	html, body {height:100%;width:100%; }
+	html, body, h1, h2, h3, h4, h5, h6, div, ul, ol, li, dl, dt, dd, iframe, textarea, input, button, p, strong, b, i, a, span, del, pre, table, tr, th, td, form, fieldset, .pr, .pc { margin: 0; padding: 0; word-wrap: break-word; font-family: verdana,Microsoft YaHei,Tahoma,sans-serif; *font-family: Microsoft YaHei,verdana,Tahoma,sans-serif; }
+	body, ul, ol, li, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset, .pr, .pc, em, del { font-style: normal; font-size: 100%; }
+	ul, ol, dl { list-style: none; }
+
+
+	._citys { width: 450px; display: inline-block; border: 2px solid #eee; padding: 5px; position: relative; }
+	._citys span { color: #56b4f8; height: 15px; width: 15px; line-height: 15px; text-align: center; border-radius: 3px; position: absolute; right: 10px; top: 10px; border: 1px solid #56b4f8; cursor: pointer; }
+	._citys0 { width: 100%; height: 34px; display: inline-block; border-bottom: 2px solid #56b4f8; padding: 0; margin: 0; }
+	._citys0 li { display: inline-block; line-height: 34px; font-size: 15px; color: #888; width: 80px; text-align: center; cursor: pointer; }
+	.citySel { background-color: #56b4f8; color: #fff !important; }
+	._citys1 { width: 100%; display: inline-block; padding: 10px 0; }
+	._citys1 a { width: 83px; height: 35px; display: inline-block; background-color: #f5f5f5; color: #666; margin-left: 6px; margin-top: 3px; line-height: 35px; text-align: center; cursor: pointer; font-size: 13px; overflow: hidden; }
+	._citys1 a:hover { color: #fff; background-color: #56b4f8; }
+	.AreaS { background-color: #56b4f8 !important; color: #fff !important; }
+	#city{color:#999; height:30px; font-size:16px;}
+
+	
+</style>
+<div class="popupal2">
+		<div class="Popup">
+			<div class="Popup_top">
+				<a>修改收货地址</a>
+				<a class="shouhuodz"><img src="images/home/images_14_address/Shut down.png" ></a>
+			</div>
+			<ul>
+				<li style="color:#ff3f3f;line-height:30px;">&nbsp;&nbsp;&nbsp;*</li>
+				<li><a>收货人&nbsp;:</a></li>
+				<li><input type="text" name="" value="" style="border:#efefef 1px solid;width:210px;height:28px;" /></li>
+			</ul>
+			<ul>
+				<li style="color:#ff3f3f;line-height:30px;">*</li>
+				<li><a>所在地区&nbsp;:</a></li>
+				<li><input type="text"  id="city1" value="" name="" style="border:#efefef 1px solid;width:210px;height:28px;" /></li>
+			</ul>
+			<div class='header_hide'>
+			<ul >
+				<li style="color:#ff3f3f;line-height:30px;">*</li>
+				<li><a>详细地址&nbsp;:</a></li>
+				<li><input type="text" name="" value=""  style="border:#efefef 1px solid;width:318px;height:28px;" /></li>
+			</ul>
+			<ul >
+				<li style="color:#ff3f3f;line-height:30px;">*</li>
+				<li><a>手机号码&nbsp;:</a></li>
+				<li><input type="text" name="" value="" style="border:#efefef 1px solid;width:210px;height:28px;" /></li>
+			</ul>
+			<ul >
+				<li><a>&nbsp;&nbsp;电子邮件&nbsp;:</a></li>
+				<li><input type="text" name="" style="border:#efefef 1px solid;width:210px;height:28px;" /></li>
+			</ul>
+			<div class="preservation1">
+			<a >保存新地址</a>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div id="content">
+		<div class="zsyj_logo">
+			<a href="<?=yii::$app->urlManager->createUrl('home/index')?>"><img src="images/home/images_16_Purchasepage/shop_LOGO.png" style="float:left;"></a>
+			<div class="process2">
+				<img src="images/home/images_16_Purchasepage/process2.png" style="margin-left:137px;">
+				
+			</div>
+		</div>
+       <div class="big">
+		<div class="Shipping_address">
+			<p>选择收货地址</p>
+		</div>
+		<div class="consignee">	
+			<div class="consignee_information">
+				<span>收货人信息</span>
+				<a class="shouhuo"><u>新增收货地点</u></a>
+			</div>
+             <div class="mrdz" style="margin-left:50px;">		
+					<ul class="moren">
+						<div class="massge_box" >
+						紫菀&nbsp湖北
+						</div>
+						<li>紫菀</li>
+						<li>湖北</li>
+						<li>武汉市</li>
+						<li>洪山区</li>
+						<li>黄家湖3号</li>
+						<li >177****7363</li>			
+						<li class="wei">
+							<div class="moren1" >					
+							</div>
+						</li>
+						<li class="edit" style="color: rgb(153, 102, 153);">修改</li>
+						<li class="del" style="color: rgb(153, 102, 153);">删除</li>
+					</ul>		
+					<ul class="moren">
+						<div class="massge_box" >
+						紫菀&nbsp湖北
+						</div>
+						<li>紫苑</li>
+						<li>湖北</li>
+						<li>武汉市</li>
+						<li>洪山区</li>
+						<li>黄家湖3号</li>
+						<li>177****7363</li>	
+						<li class="wei">
+							<div class="moren1"></div>
+						</li>
+						<li class="edit" style="color: rgb(153, 102, 153);">修改</li>
+						<li class="del" style="color: rgb(153, 102, 153);">删除</li>
+					</ul>
+				</div>	
+		</div>
+		<div class="pay_way">
+			<div class="consignee_information">
+				<span>支付方式</span>
+			</div>
+			<div class="pay_box">
+				货到付款
+			</div>
+		</div>
+		<div class="confirm_information">
+			<span>确认订单信息</span>
+		</div>
+		<div class="category">
+			<ul>
+				<li style="margin-left:155px;">商品信息</li>
+				<li style="margin-left:210px;">单价（元）</li>
+				<li>折扣</li>
+				<li>数量</li>
+				<li>金额（元）</li>
+			</ul>
+		</div>
+		<div class="goods_information">
+			<div class="product_drinks">
+				<img src="images/home/images_16_Purchasepage/product1.png">
+			</div>
+			<div class="drinks_information">
+				<ul>
+					<li>紫薯原浆</li>
+					<li>规格： &nbsp;1 &nbsp;盒</li>
+					<li>包装：&nbsp;真空包装</li>
+				</ul>
+			</div>
+			<div class="number">
+                    <ul>
+                        <li class="price">29.90</li>
+                        <li style="margin-left:140px;">--</li>
+                       <button class="minus3" >—</button>
+                        <input class="num3"  type="text" value="1" name="number" size="1" />
+                        <button class="plus3"  >+</button>
+                        <li style="margin-left:280px;margin-top:-22px;color:#ff2347;" class="subtotal">29.90</li>	
+                    </ul>
+                </div>
+		</div>
+		<div class="goods_information">
+			<div class="product_drinks">
+				<img src="images/home/images_16_Purchasepage/product.png">
+			</div>
+			<div class="drinks_information">
+				<ul>
+					<li>紫薯原浆</li>
+					<li>规格： &nbsp;1 &nbsp;盒</li>
+					<li>包装：&nbsp;真空包装</li>
+				</ul>
+			</div>
+			 <div class="number">
+                    <ul>
+                        <li class="price">25.90</li>
+                        <li style="margin-left:140px;">--</li>
+                        <button class="minus3" >—</button>
+                        <input class="num3"  type="text" value="1" name="number" size="1" />
+                        <button class="plus3"  >+</button>
+                        <li style="margin-left:280px;margin-top:-22px;color:#ff2347;" class="subtotal">25.90</li>
+                    </ul>
+              </div>
+		</div>
+		<div class="total_money">
+				<span>总商品金额：     &nbsp;￥<div id="priceTotal" style="float:right;margin-right:23px;">55.80</div></span>
+		</div>
+		<div class="freight">
+				<span>运费：     &nbsp;￥15.00</span>
+		</div>
+		<div class="pay_line">
+		</div>
+		<div class="pay_total">
+				<span>应付总额：     &nbsp;￥<div id="Pricerealy" style="float:right;margin-right:25px;">70.80</div></span>
+		</div>
+		<div class="pay_line">
+		</div>
+		<div class="return_Submit">
+			<a href="<?=yii::$app->urlManager->createUrl('fontadmin/shoppingcart')?>"><u>返回购物车</u></a>
+			<a href="<?=yii::$app->urlManager->createUrl('fontadmin/ordercomplete')?>" ><div class="sbbmit"></div></a>
+		</div>
+        </div>
+	</div>
+	<!--下面是footer部分-->
+	<?=$this->render('..\home\footer',['color' => ''])?>
+	<!--分享和侧悬浮-->
+	<?=$this->render('..\home\share')?>
+	<!--右悬浮-->
+	<?=$this->render('..\home\sidebox')?>
+</body>
+</html>

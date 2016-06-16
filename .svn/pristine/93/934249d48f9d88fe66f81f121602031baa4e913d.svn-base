@@ -1,0 +1,10 @@
+/**
+ * Created by Administrator on 2016/4/8.
+ */
+function openadd(id){
+    window.parent.location.href= adduUrl+'&id='+id;
+}
+
+function openaddr(id){
+    window.location.href= addrUrl+'&dictid='+id;
+}

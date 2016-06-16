@@ -1,0 +1,13 @@
+
+*{margin:0;padding:0;}	
+ul{list-style:none;}	
+a{text-decoration:none;}
+img{ border:0; vertical-align:bottom;}
+@font-face{font-family:"微软雅黑";
+    src:url(../../css/home/Yahei.ttc);}
+/*footer*/
+body{width: 100%;}
+.header{min-width:1000px;width:100%;height:58px; background-color:#fff; border-bottom:1px solid #dfdfe3; padding-top:10px; font-family:'黑体';margin:0 auto;}
+.content{min-width:1000px;width:100%;margin:0 auto;font-family:'微软雅黑';margin-bottom:0px;}
+.footer{min-width:1000px;width:100%;font-family: '微软雅黑'!important;}
+

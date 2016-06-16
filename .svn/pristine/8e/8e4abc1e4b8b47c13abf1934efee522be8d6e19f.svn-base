@@ -1,0 +1,87 @@
+﻿<?php
+/**
+ * Created by PhpStorm.
+ * User: liluoao
+ * Date: 2016/4/3
+ * Time: 12:10
+ */
+use yii\helpers\Html;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\Breadcrumbs;
+?>
+
+<?php $this->beginPage() ?>
+<!DOCTYPE html>
+<html lang="<?= Yii::$app->language ?>" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的消息</title>
+    <script src="js/home/jquery-1.8.3.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/home/base.css">
+    <link rel="stylesheet" type="text/css" href="css/home/aside_base.css" />
+    <link rel="stylesheet" type="text/css" href="css/home/mynews.css">
+
+</head>
+
+<body>
+<div class="wrapper"><!--header-->
+    <?=$this->render('..\home\header',['column'=>'shop'])?>
+    <!--header-->
+
+    <div class="content">
+        <div class="content_top">
+            <div class="content_nav">
+                <a href="<?=yii::$app->urlManager->createUrl('fontadmin/personaldata')?>">我的紫薯</a><span>></span><a href="<?=yii::$app->urlManager->createUrl('fontadmin/orderafter')?>">我的订单</a><span>></span><a href="<?=yii::$app->urlManager->createUrl('fontadmin/orderdetail')?>">订单详情</a></div>
+            <div class="content_right"><img src="images/home/images_order_detail/13_1_LOGO.png" /></div>
+            <div class="content_line"></div>
+        </div>
+        <div class="big">
+            <div class="aside">
+                <div class="aside_title">我的紫薯</div>
+                <ul>
+                    <li><a href="<?=yii::$app->urlManager->createUrl('fontadmin/personaldata')?>">个人资料</a></li>
+                    <li><a href="<?=yii::$app->urlManager->createUrl('fontadmin/password')?>">账户安全</a></li>
+                    <li><a href="<?=yii::$app->urlManager->createUrl('fontadmin/addressafter')?>">收货地址</a></li>
+                    <li><a href="<?=yii::$app->urlManager->createUrl('fontadmin/mymessages')?>">我的消息</a></li>
+                    <li><a href="<?=yii::$app->urlManager->createUrl('fontadmin/orderafter')?>" class="now">我的订单</a></li>
+                    <li><a href="<?=yii::$app->urlManager->createUrl('fontadmin/mynews')?>">我的留言</a></li>
+                </ul>
+            </div>
+            <div class="big_right">
+                <p class="title">我的消息</p>
+                <div class="message" id="one">
+                    <p class="time">2016-03-14 15:21:27</p>
+                    <p class="txt"><span>系统消息</span><a>您的账号于2016年03月14日 15:20:39修改登录，如非本人操作，请尽快修改登录密码</a></p>
+                    <img class="one" src="images/home/images_13_1_7/delete.png" />
+                </div>
+
+                <div class="message" id="two">
+                    <p class="time">2016-03-15 03:23:27</p>
+                    <p class="txt"><span>系统消息</span><a>您的账号于2016年03月15日 03:23:27修改登录，如非本人操作，请尽快修改登录密码</a></p>
+                    <img class="two" src="images/home/images_13_1_7/delete.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--下面是footer部分-->
+    <?=$this->render('..\home\footer',['color' => '#f7f7f7'])?>
+    <!--分享和侧悬浮-->
+    <?=$this->render('..\home\share')?>
+    <!--右悬浮-->
+    <?=$this->render('..\home\sidebox')?>
+    <script>
+        $(document).ready(function(){
+            $(".one").click(function(){
+                $("#one").hide(1000);
+            });
+            $(".two").click(function(){
+                $("#two").hide(1000);
+            });
+        })
+    </script>
+</div>
+</body>
+</html>

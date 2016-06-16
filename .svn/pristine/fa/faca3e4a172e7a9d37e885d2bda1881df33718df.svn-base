@@ -1,0 +1,33 @@
+
+/*content*/
+.nav_right{width:770px;height:auto;background:#FFF;margin-left:180px;margin-top:25px;font-size:14px;min-height:500px;}
+.one{height:40px; width:730px;border-bottom:2px solid #e3dbdb;}
+.one span{font-size:16px;line-height:40px;padding-left:20px;}
+.one form{float:right;line-height:40px;}
+.search{border:1px solid #e3dbdb;background:#fff;font-size:14px;}
+.search a{color:#292929;}
+.two{width:730px;height:40px;line-height:40px;}
+.two form{float:right;line-height:40px;padding-right:10px;}
+.three{width:730px;height:40px;border:1px solid #e3dbdb;line-height:40px;background:#faf7fb;}
+.three span{padding-left:20px;}
+.three ul{float:right;}
+.three ul li{float:left;padding-right:30px;}
+.four{width:730px;height:40px;border:1px solid #e3dbdb;line-height:40px;background:#fffcee;}
+.four span{padding-left:20px;}
+.five{width:730px;height:80px;}
+.five ul{float:right;padding-top:20px;}
+.five ul li{float:left;padding-right:30px;}
+.five ul li a{color:#000;}
+.five ul li a:hover{color:#cc33cc;}
+.line{line-height:45px;cursor:pointer;}
+.five img{padding-top:10px;padding-left:30px;float:left;}
+.five span{float:left;line-height:80px;padding-left:40px;}
+.eight{width:730px;height:40px;border-top:2px solid #e3dbdb;line-height:40px;}
+.page{float:right;padding-right:25px;}
+.page li{float:left;padding-left:25px;}
+.numss{color:#f26917;}
+.next{float:right;margin-top:10px;border:2px solid #e3dbdb;background:#fbdcff;}
+.next a{color:#292929;background:#FFF;}
+.check-one-check{float:left;margin-top:30px;margin-left:10px;}
+.check-all-check{margin-left:10px;}
+.black{color:#000;}

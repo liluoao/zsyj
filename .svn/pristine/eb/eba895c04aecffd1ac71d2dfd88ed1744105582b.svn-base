@@ -1,0 +1,70 @@
+
+.content{width:1000px;margin:0 auto;font-family:'微软雅黑';margin-bottom:140px;margin-top:50px;}
+.zsyj_logo{width:1000px;height:100px;margin:0 auto;}
+.big{width:1000px;margin:0 auto;}
+.process2{height:46px;float:right;margin-top:45px;}
+
+.Shipping_address{width:1000px;height:42px;background:#f4f4f4;border:1px solid #bd9fbd;margin-top:21px;}
+.Shipping_address p{font-size:18px;margin-left:32px;line-height:42px;font-weight:800;letter-spacing: 2px;}
+.consignee{width:1000px;height:auto;border:#999999 1px solid;}
+.consignee_information{width:1000px;height:34px;}
+.consignee_information span{line-height:34px;font-weight:800;margin-left:32px;font-size:20px;letter-spacing: 2px;}
+.consignee_information a{line-height:34px;color:#996699;margin-left:719px;}
+.pay_way{width:1000px;height:105px;border:1px #999999 solid;}
+.pay_box{border:#e4e4e4 1px solid;width:180px;height:35px;margin-left:46px;margin-top:16px;text-align:center;line-height:35px;color:#000;font-size:14px;letter-spacing:1px;background:url(../../images/home/images_16_Purchasepage/Select1.jpg);}
+.confirm_information{width:1000px;height:42px;border:#e4e4e4 1px solid;background:#f4f4f4;margin-top:26px;}
+.confirm_information span{font-size:18px;margin-left:32px;line-height:42px;font-weight:800;letter-spacing: 2px;}
+.category{width:1000px;height:51px;}
+.category ul{text-align:center;}
+.category ul li{float:left;color:#996699;font-size:14px;line-height:51px;margin-left:109px;}
+.goods_information{width:1000px;height:160px;border:1px #999999 solid;}
+.product_drinks{width:107px;height:139px;border:#c490bf 2px solid;margin-left:65px;float:left;margin-top:9px;}
+.drinks_information{width:109px;height:63px;float:left;color:#cc99cc;font-size:14px;margin-top:48px;margin-left:30px;}
+.number{width:686px;height:160px;float:right;margin-top:-110px;}
+.number ul li{float:left;float:left;color:#666666;font-size:14px;line-height:160px;margin-left:100px;}
+.number ul{text-align:center;}
+.minus3{position:relative;right:50px;top:70px;height: 23px;cursor: pointer;
+    width: 23px;
+    border: 1px solid #959494;
+    background: #fff;
+    text-align: center;
+    line-height: 23px;
+    color: #959494;
+    -moz-user-select:none;/*火狐*/ -webkit-user-select:none;/*webkit浏览器*/-ms-user-select:none;/*IE10*/ -khtml-user-select:none;/*早期浏览器*/ user-select:none;}
+.plus3{position:relative;right:50px;top:70px;height: 23px;cursor: pointer;
+    width: 23px;
+    border: 1px solid #959494;
+    background: #fff;
+    text-align: center;
+    line-height: 23px;
+    color: #959494;
+    -moz-user-select:none;/*火狐*/ -webkit-user-select:none;/*webkit浏览器*/-ms-user-select:none;/*IE10*/ -khtml-user-select:none;/*早期浏览器*/ user-select:none;}
+.minus3:hover{border-color:#f50;color:#f50;}
+.plus3:hover{border-color:#f50;color:#f50;}
+.number_plus button:hover{border-color:#f50;color:#f50;}
+.num3{position:relative;right:50px;top:70px;width:45px;text-align:center;height:21px;line-height:20px;border:solid 1px #b5b5ba;background:#ffffff;padding-top: 1px;}
+.total_money{width:1000px;height:14px;margin-top:20px;}
+.total_money span{font-size:14px;margin-left:823px;line-height:14px;}
+.freight{width:1000px;height:14px;margin-top:20px;}
+.freight span{font-size:14px;margin-left:863px;color:#999999;line-height:14px;}
+.pay_line{height:1px;width:800px;border-top:#e3dbdb 1px solid;margin-top:14px;margin-left:200px;}
+.pay_total{width:1000px;height:16px;margin-top:12px;}
+.pay_total span{font-size:14px;margin-left:833px;color:#ff2347;line-height:16px;}
+.return_Submit{width:1000px;height:45px;margin-top:32px;}
+.return_Submit u{color:#e37bfa;line-height:45px;font-size:14px;margin-left:688px;margin-right:17px;}
+.sbbmit{background:url(../../images/home/images_16_Purchasepage/subimit.png);width:185px;height:45px;float:right;}
+.sbbmit:hover{background:url(../../images/home/images_16_Purchasepage/subimit_after.png);}
+/*默认地址*/
+.mrdz{width:100%;height:auto;margin:0 auto;font-size:12px;font-family:'微软雅黑';margin-bottom: 20px;}
+.mrdz ul{width:950px; height:33px; margin-top:10px;}
+.mrdz ul li{float:left;width:85px;text-align:center; height:39px;  line-height:39px; font-family:'微软雅黑';}
+.moren{width:90%;margin-left:50px;height:auto;}
+.moren:hover{background:#ffe7fe;}
+.morenChosedUl{background:#ffe7fe;margin-left:50px;}
+.massge_box{width:180px;height:35px;border:#e4e4e4 1px solid;background:#fff;text-align:center;line-height:35px;float:left;cursor: pointer;}
+.massge_box:hover{background:url(../../images/home/images_16_Purchasepage/Select1.jpg);width:180px;height:35px;}
+.num_tel{width:90px;}
+.moren1{cursor: pointer;  }
+.edit,.del{cursor: pointer;color: rgb(153, 102, 153);}
+.shouhuo{cursor: pointer;}
+
