@@ -1,8 +1,0 @@
-/**
- * Created by Administrator on 2016/4/2.
- */
-$(document).ready(function() {
-    $(".close").click(function () {
-        $("#full").hide();
-    });
-});
