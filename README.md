@@ -1,102 +1,71 @@
-Yii 2 Basic Project Template
+# 紫薯原浆 #
 ============================
 
-Yii 2 Basic Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-rapidly creating small projects.
+[紫薯原浆](https://github.com/liluoao/zsyj "紫薯原浆")是一个使用Yii2开发的B2C企业网站
 
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
 
-[![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-app-basic/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Total Downloads](https://poser.pugx.org/yiisoft/yii2-app-basic/downloads.png)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-app-basic.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-basic)
+## 项目结构 ##
 
-DIRECTORY STRUCTURE
--------------------
 
-      assets/             contains assets definition
-      commands/           contains console commands (controllers)
-      config/             contains application configurations
-      controllers/        contains Web controller classes
-      mail/               contains view files for e-mails
-      models/             contains model classes
-      runtime/            contains files generated during runtime
-      tests/              contains various tests for the basic application
-      vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
-      web/                contains the entry script and Web resources
+      assets/             用于存放前端资源包PHP类
+      commands/           命令行
+	  common/       	  公共目录
+      config/             配置
+      controllers/        控制器
+      mail/               与邮件相关的布局文件
+      models/             模型
+      runtime/            运行时临时文件
+      tests/              存放测试类
+      vendor/             第三方的程序
+      views/              视图
+      web/                Web服务器可以访问的目录
 
 
 
-REQUIREMENTS
-------------
-
-The minimum requirement by this project template that your Web server supports PHP 5.4.0.
+## 安装环境 ##
 
 
-INSTALLATION
-------------
+本项目需要PHP版本大于等于 5.4.0.
 
-### Install from an Archive File
+开启openssl扩展.
 
-Extract the archive file downloaded from [yiiframework.com](http://www.yiiframework.com/download/) to
-a directory named `basic` that is directly under the Web root.
-
-Set cookie validation key in `config/web.php` file to some random secret string:
-
-```php
-'request' => [
-    // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-    'cookieValidationKey' => '<secret random string goes here>',
-],
-```
-
-You can then access the application through the following URL:
-
-~~~
-http://localhost/basic/web/
-~~~
+开启open_short _tags配置.
 
 
-### Install via Composer
-
-If you do not have [Composer](http://getcomposer.org/), you may install it by following the instructions
-at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
-
-You can then install this project template using the following command:
-
-~~~
-php composer.phar global require "fxp/composer-asset-plugin:~1.1.1"
-php composer.phar create-project --prefer-dist --stability=dev yiisoft/yii2-app-basic basic
-~~~
-
-Now you should be able to access the application through the following URL, assuming `basic` is the directory
-directly under the Web root.
-
-~~~
-http://localhost/basic/web/
-~~~
 
 
-CONFIGURATION
--------------
+## 配置信息 ##
+
 
 ### Database
 
-Edit the file `config/db.php` with real data, for example:
+修改 `config/db.php` 为你的实际环境:
 
 ```php
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
+    'dsn' => 'mysql:host=localhost;dbname=zsyj',
     'username' => 'root',
-    'password' => '1234',
+    'password' => 'root',
     'charset' => 'utf8',
+    'tablePrefix' => 'zsyj_',
 ];
 ```
 
-**NOTES:**
-- Yii won't create the database for you, this has to be done manually before you can access it.
-- Check and edit the other files in the `config/` directory to customize your application as required.
-- Refer to the README in the `tests` directory for information specific to basic application tests.
+在本地新建名为zsyj的数据库，字符集为utf8-unicode，还原项目目录里的zsyj.psc数据库备份
+
+## 网站入口 ##
+前台：[http://localhost/zsyj/web/index.php?r=home](http://localhost/zsyj/web/index.php?r=home "http://localhost/zsyj/web/index.php?r=home")
+
+后台：[http://localhost/zsyj/web/index.php?r=login](http://localhost/zsyj/web/index.php?r=login "http://localhost/zsyj/web/index.php?r=login")
+
+## 关于作者 ##
+武汉工商学院703工作室
+
+李罗奥
+
+QQ911430818
+
+[https://github.com/liluoao](https://github.com/liluoao "Github")
+
+[http://liluoao.blog.163.com/](http://liluoao.blog.163.com/ "李罗奥的博客")
