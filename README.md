@@ -52,7 +52,12 @@ return [
 ];
 ```
 
-在本地新建名为zsyj的数据库，字符集为utf8-unicode，还原项目目录里的zsyj.psc数据库备份
+在本地新建名为zsyj的数据库，字符集为utf8-unicode，
+
+还原项目目录里的zsyj.psc数据库备份
+
+或者导入zsyj.sql文件
+
 
 ## 网站入口 ##
 前台：[http://localhost/zsyj/web/index.php?r=home](http://localhost/zsyj/web/index.php?r=home "http://localhost/zsyj/web/index.php?r=home")
