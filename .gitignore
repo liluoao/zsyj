@@ -12,6 +12,8 @@ nbproject
 # windows thumbnail cache
 Thumbs.db
 
+#svn
+.svn
 
 # composer itself is not needed
 composer.phar
@@ -23,3 +25,13 @@ composer.phar
 phpunit.phar
 # local phpunit config
 /phpunit.xml
+
+
+#upload
+/web/upload
+
+#runtime
+/runtime
+
+#test
+/tests
