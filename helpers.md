@@ -69,4 +69,11 @@ if (!filter_has_var(INPUT_GET, "name"))
 } else {
     echo("success");
 }
+
+if (!filter_var("someone@example....com", FILTER_VALIDATE_EMAIL))
+{
+    echo("E-mail 不是一个合法的邮箱");
+} else {
+    echo("success");
+}
 ```
