@@ -55,4 +55,11 @@ public function messages() {
         'address.required_without_all' => '当电话号码、手机号码都为空时,Email和地址不能同时为空'
     ];
 }
+
+if (!filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL))
+{
+     echo "E-Mail is not valid";
+} else {
+     echo "success";
+}
 ```
