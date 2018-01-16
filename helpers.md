@@ -62,4 +62,11 @@ if (!filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL))
 } else {
      echo "success";
 }
+
+if (!filter_has_var(INPUT_GET, "name"))
+{
+    echo("name is required");
+} else {
+    echo("success");
+}
 ```
