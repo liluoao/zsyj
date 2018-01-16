@@ -37,4 +37,22 @@ if (!function_exists('getMoneyFormat')) {
 'locale' => 'zh-CN',
 
 'fallback_locale' => 'en',
+
+public function rules() {
+    return [
+        'tel' => 'required_without_all:mobile,email,address',
+        'mobile' => 'required_without_all:tel,email,address',
+        'email' => 'required_without_all:tel,mobile',
+        'address' => 'required_without_all:tel,mobile',
+    ];
+}
+
+public function messages() {
+    return [
+        'tel.required_without_all' => '当手机号码、Email、地址都为空时,电话号码不能为空',
+        'mobile.required_without_all' => '当电话号码、Email、地址都为空时,手机号码不能为空',
+        'email.required_without_all' => '当电话号码、手机号码都为空时,Email和地址不能同时为空',
+        'address.required_without_all' => '当电话号码、手机号码都为空时,Email和地址不能同时为空'
+    ];
+}
 ```
